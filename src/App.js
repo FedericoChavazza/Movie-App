@@ -3,14 +3,12 @@ import { Helmet } from 'react-helmet-async';
 
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
-import useAuth from 'hooks/useAuth';
 import routes from 'routes';
 
 import 'styles/variables.css';
 
 function App() {
   const t = useTranslation();
-  const { authenticated } = useAuth();
 
   return (
     <>
@@ -19,8 +17,8 @@ function App() {
       </Helmet>
       <BrowserRouter>
         <Switch>
-          {routes.map(route => (
-            <RouteFromPath key={`route-${route.path}`} {...route} authenticated={authenticated} />
+          {routes?.map(route => (
+            <RouteFromPath key={`route-${route.path}`} />
           ))}
         </Switch>
       </BrowserRouter>

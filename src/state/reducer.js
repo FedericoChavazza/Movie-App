@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { api } from 'services/api';
-import authReducer from './slices/authSlice';
+import { api } from 'services/endpoints/movieEndpoints';
+import movieReducer from './slices/movieSlice';
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
-  auth: authReducer,
+  movie: movieReducer,
 });
 
 export default rootReducer;

@@ -3,8 +3,10 @@ import { Helmet } from 'react-helmet-async';
 
 import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
+
 import routes from 'routes';
 
+import 'styles/styles.css';
 import 'styles/variables.css';
 
 function App() {
@@ -17,8 +19,8 @@ function App() {
       </Helmet>
       <BrowserRouter>
         <Switch>
-          {routes?.map(route => (
-            <RouteFromPath key={`route-${route.path}`} />
+          {routes.map(route => (
+            <RouteFromPath key={`route-${route.path}`} {...route} />
           ))}
         </Switch>
       </BrowserRouter>

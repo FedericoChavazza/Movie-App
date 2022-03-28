@@ -1,0 +1,33 @@
+.Movie-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  cursor: pointer;
+  height: 350px;
+  width: 200px;
+}
+
+.Movie-container__img {
+  height: 275px;
+  width: 200px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+}
+
+.Movie-container__details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.Movie-container__title {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Movie-container__date {
+  align-self: flex-start;
+}

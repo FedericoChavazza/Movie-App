@@ -1,5 +1,20 @@
 {
   "global": {
-    "pageTitle": "RS React Redux Base"
+    "pageTitle": "Movies App"
+  },
+  "homepage": {
+    "titles": {
+      "watchlist": "WatchList",
+      "list": "see list"
+    }
+  },
+  "movieDetails": {
+    "btn": "Add to watchList",
+    "ratings": {
+      "imdb": "IMDb RATING",
+      "user": "YOUR RATING",
+      "general": "POPULARITY"
+    },
+    "images": "Images"
   }
 }

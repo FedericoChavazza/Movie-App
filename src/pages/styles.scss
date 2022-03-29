@@ -1,0 +1,162 @@
+@import '../styles/variables.scss';
+
+.MovieInfo-container {
+  @include display_flex(center, center);
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.MovieInfo__data {
+  @include display_flex(center, center);
+  height: 80%;
+  width: 70%;
+}
+
+.MovieInfo__img {
+  height: 530px;
+  width: 340px;
+  object-fit: cover;
+  background-color: red;
+}
+
+.MovieInfo__title {
+  @include display_flex(space-between, center);
+  width: 100%;
+}
+
+.MovieInfo-data__container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  @include display_flex(center, flex-start);
+  width: 100%;
+  height: 80%;
+  gap: 50px;
+}
+
+.MovieInfo__genres {
+  @include display_flex(flex-start, center);
+}
+
+.MovieInfo__genres div {
+  background-color: #f2f2f2;
+  padding: 12px;
+  border-radius: 20px;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.MovieInfo-data___information {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  @include display_flex(center, flex-start);
+  flex-direction: column;
+  gap: 15px;
+}
+
+.MovieInfo__rate {
+  @include display_flex(center, flex-start);
+  background-color: #1d1d1d;
+  justify-content: center;
+  align-items: flex-start;
+  grid-gap: 30px;
+  gap: 30px;
+  text-align: center;
+  padding: 10px;
+  width: 400px;
+  height: 60px;
+}
+
+.MovieInfo__rate h4 {
+  margin-top: 10px;
+}
+
+.MovieInfo__stadisticRate {
+  @include display_flex(center, center);
+  gap: 5px;
+}
+
+.MovieInfo__rate div h4 {
+  margin: 0;
+  color: #b4b4b4;
+}
+
+.MovieInfo__stadisticRate h4:nth-child(1) {
+  color: white;
+}
+
+.MovieInfo__stadisticRate h4:nth-child(2) {
+  color: #b4b4b4;
+}
+
+.MovieInfo-data___information p {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.MovieInfo-rating__title {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.MovieInfo-rating__title .MovieInfo__rate {
+  margin-bottom: 10px;
+}
+
+.MovieInfo__imdbRating {
+  @include display_flex(center, flex-start);
+  flex-direction: column;
+}
+
+.MovieInfo__imdbRating h4:nth-child(2)::first-letter {
+  color: white;
+}
+
+.MovieInfo__rate .MovieInfo__ownRating {
+  @include display_flex(center, center);
+  gap: 5px;
+  color: #4b8ee8;
+}
+
+.MovieInfo__ownRating svg {
+  cursor: pointer;
+}
+
+.MovieInfo__imdbRating h5 {
+  margin: 0;
+  color: #b4b4b4;
+  margin-left: 30px;
+}
+
+.MovieInfo__imdbRating svg {
+  color: #f3be34;
+}
+
+.MovieInfo__ratingStar {
+  @include display_flex(center, center);
+
+  gap: 5px;
+}
+
+.MovieInfo__extraImgs {
+  @include display_flex(flex-start, center);
+  gap: 20px;
+  max-width: 1080px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.MovieInfo__extraImgs img {
+  width: 250px;
+  height: 150px;
+}
+
+.MovieInfo-display__rating h4:nth-child(1) {
+  margin-bottom: 10px;
+}
+
+.Movie-carousel__container {
+  height: 40%;
+}

@@ -1,0 +1,12 @@
+$colorBlack: #1f1f1f;
+$colorLightBlack: #303030;
+$colorLightGrey: #d3d3d3;
+$colorWhite: #fff;
+$colorRed: #dd0000;
+$colorLightBlue: #278ed3;
+$boxShadowing: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+@mixin display_flex($justifyContent, $alignItems) {
+  display: flex;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}

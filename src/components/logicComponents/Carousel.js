@@ -1,11 +1,11 @@
 import { Movie } from 'components/viewComponents/Movie';
-import './styles.css';
+import './styles.scss';
 
-export function Carousel({ mock }) {
+export function Carousel({ movies }) {
   return (
     <div className="Carousel-container">
-      {mock.map(data => (
-        <Movie key={data.id} img={data.img} title={data.title} date={data.date} />
+      {movies.map(movie => (
+        <Movie key={movie.id} img={movie.img} title={movie.title} date={movie.date} />
       ))}
     </div>
   );

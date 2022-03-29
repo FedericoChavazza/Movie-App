@@ -1,6 +1,6 @@
 import { mockArrayData } from 'mock/mockData';
 import { Carousel } from 'components/logicComponents/Carousel';
-import './styles.css';
+import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 
 export function HomePage() {
@@ -12,7 +12,7 @@ export function HomePage() {
       <div className="Homepage-container__carousel">
         <div className="Homepage-container__carousel-container">
           {' '}
-          <Carousel mock={mockArrayData} />{' '}
+          <Carousel movies={mockArrayData} />{' '}
         </div>
         <div className="Homepage-container__Watchlist-title">
           {' '}
@@ -21,7 +21,7 @@ export function HomePage() {
         </div>{' '}
         <div className="Homepage-container__carousel-container">
           {' '}
-          <Carousel mock={mockArrayData} />{' '}
+          <Carousel movies={mockArrayData} />{' '}
         </div>
       </div>{' '}
     </div>

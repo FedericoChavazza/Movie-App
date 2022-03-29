@@ -2,6 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {};
 
-const movieSlice = createSlice({});
+const slice = createSlice({});
 
-export default movieSlice.reducer;
+export default slice.reducer;

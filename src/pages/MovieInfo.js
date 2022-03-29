@@ -6,16 +6,25 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
+import { useHistory } from 'react-router-dom';
+import routesPaths from 'routes/routesPaths';
 
 export function MovieInfo() {
   const mock = mockArrayData;
 
+  const history = useHistory();
+
   const t = useTranslation();
+
+  const goBack = () => {
+    history.push(routesPaths.home);
+  };
 
   const scrollRef = useHorizontalScroll();
 
   return (
     <div className="MovieInfo-container">
+      <Button handleClick={() => goBack()}>go back</Button>
       <div className="MovieInfo__data">
         <div className="MovieInfo-data__container">
           <div>

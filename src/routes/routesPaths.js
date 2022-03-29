@@ -1,4 +1,5 @@
 const routesPaths = {
+  home: '/',
   movieInfo: '/movie/:id',
 };
 

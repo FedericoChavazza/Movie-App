@@ -37,14 +37,13 @@
 
 .MovieInfo__genres {
   @include display_flex(flex-start, center);
-}
-
-.MovieInfo__genres div {
-  background-color: #f2f2f2;
-  padding: 12px;
-  border-radius: 20px;
-  margin: 10px;
-  font-weight: 600;
+  div {
+    background-color: #f2f2f2;
+    padding: 12px;
+    border-radius: 20px;
+    margin: 10px;
+    font-weight: 600;
+  }
 }
 
 .MovieInfo-data___information {
@@ -67,10 +66,10 @@
   padding: 10px;
   width: 400px;
   height: 60px;
-}
 
-.MovieInfo__rate h4 {
-  margin-top: 10px;
+  h4 {
+    margin-top: 10px;
+  }
 }
 
 .MovieInfo__stadisticRate {
@@ -108,6 +107,14 @@
 .MovieInfo__imdbRating {
   @include display_flex(center, flex-start);
   flex-direction: column;
+  h5 {
+    margin: 0;
+    color: #b4b4b4;
+    margin-left: 30px;
+  }
+  svg {
+    color: #f3be34;
+  }
 }
 
 .MovieInfo__imdbRating h4:nth-child(2)::first-letter {
@@ -124,16 +131,6 @@
   cursor: pointer;
 }
 
-.MovieInfo__imdbRating h5 {
-  margin: 0;
-  color: #b4b4b4;
-  margin-left: 30px;
-}
-
-.MovieInfo__imdbRating svg {
-  color: #f3be34;
-}
-
 .MovieInfo__ratingStar {
   @include display_flex(center, center);
 
@@ -146,11 +143,10 @@
   max-width: 1080px;
   overflow-x: scroll;
   overflow-y: hidden;
-}
-
-.MovieInfo__extraImgs img {
-  width: 250px;
-  height: 150px;
+  img {
+    width: 250px;
+    height: 150px;
+  }
 }
 
 .MovieInfo-display__rating h4:nth-child(1) {

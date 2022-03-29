@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .Carousel-container {
-  @include display_flex(center, center);
+  @include display_flex(flex-start, center);
   width: 100%;
   overflow-x: scroll;
   gap: 10px;

@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 
 import reducer from 'state/reducer';
-import { api } from 'services/api';
+import { api } from 'services/endpoints/movieEndpoints';
 
 const middleware = getDefaultMiddleware => getDefaultMiddleware().concat(logger, api.middleware);
 

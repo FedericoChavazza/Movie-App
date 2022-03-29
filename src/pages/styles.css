@@ -1,0 +1,58 @@
+.MovieInfo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.MovieInfo__data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+}
+
+.MovieInfo__img {
+  height: 400px;
+  width: 300px;
+  object-fit: cover;
+  background-color: red;
+}
+
+.MovieInfo__title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.MovieInfo-data__container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  gap: 50px;
+}
+
+.MovieInfo__genres {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.MovieInfo__genres div {
+  background-color: #f2f2f2;
+  padding: 12px;
+  border-radius: 20px;
+  margin: 10px;
+  font-weight: 600;
+}
+
+.MovieInfo-data___information {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}

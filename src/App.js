@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           {routes?.map(route => (
-            <RouteFromPath key={`route-${route.path}`} />
+            <RouteFromPath key={`route-${route.path}`} {...route} />
           ))}
         </Switch>
       </BrowserRouter>

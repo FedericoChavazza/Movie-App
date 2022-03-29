@@ -1,1 +1,5 @@
-{}
+{
+  "global": {
+    "pageTitle": "RS React Redux Base"
+  }
+}

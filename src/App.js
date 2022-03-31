@@ -6,7 +6,7 @@ import useTranslation from 'hooks/useTranslation';
 
 import routes from 'routes';
 
-import 'styles/styles.css';
+import 'styles/styles.scss';
 import 'styles/variables.scss';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
       </Helmet>
       <BrowserRouter>
         <Switch>
-          {routes.map(route => (
+          {routes?.map(route => (
             <RouteFromPath key={`route-${route.path}`} {...route} />
           ))}
         </Switch>

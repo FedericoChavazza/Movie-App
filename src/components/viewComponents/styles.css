@@ -1,16 +1,16 @@
 .Movie-container {
   background-color: #e0e0e0;
-  border-radius: 10px;
+  border-radius: 1rem;
   cursor: pointer;
-  height: 350px;
-  width: 200px;
+  height: 35rem;
+  width: 20rem;
 }
 
 .Movie-container__img {
-  height: 275px;
-  width: 200px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  height: 27rem;
+  width: 20rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   -o-object-fit: cover;
   object-fit: cover;
 }
@@ -29,7 +29,7 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 15px;
+  padding: 1.5rem;
 }
 
 .Movie-container__title {

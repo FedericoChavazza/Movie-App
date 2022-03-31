@@ -19,7 +19,7 @@
   background-color: white;
   @include display_flex(center, center);
   flex-direction: column;
-  max-width: 1260px;
+  max-width: 126rem;
 }
 
 .Homepage-container__carousel-container {
@@ -29,9 +29,9 @@
 
 .Homepage-container__Watchlist-title {
   @include display_flex(flex-start, flex-end);
-  gap: 15px;
+  gap: 1.5rem;
   width: 100%;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .Homepage-container__Watchlist-title h1 {

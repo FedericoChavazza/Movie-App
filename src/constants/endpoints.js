@@ -1,5 +1,3 @@
-const endpoints = {
-  discover: '/discover/movie',
-};
+const endpoints = {};
 
 export default endpoints;

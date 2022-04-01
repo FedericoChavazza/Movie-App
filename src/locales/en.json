@@ -1,1 +1,11 @@
-{}
+{
+  "global": {
+    "pageTitle": "Movies App"
+  },
+  "homepage": {
+    "titles": {
+      "watchlist": "WatchList",
+      "list": "see list"
+    }
+  }
+}

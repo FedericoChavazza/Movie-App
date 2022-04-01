@@ -1,3 +1,5 @@
-const routesPaths = {};
+const routesPaths = {
+  home: '/',
+};
 
 export default routesPaths;

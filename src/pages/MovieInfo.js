@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
 
 export function MovieInfo() {
-  const mock = mockArrayData;
+  const movie = mockArrayData[0];
 
   const history = useHistory();
 
@@ -24,23 +24,23 @@ export function MovieInfo() {
 
   return (
     <div className="MovieInfo-container">
-      <Button handleClick={() => goBack()}>go back</Button>
+      <Button handleClick={() => goBack()}>{t('movieDetails.btn.back')}</Button>
       <div className="MovieInfo__data">
         <div className="MovieInfo-data__container">
           <div>
             {' '}
-            <img className="MovieInfo__img" src={mock[0].img} alt={mock[0].img} />{' '}
+            <img className="MovieInfo__img" src={movie.img} alt={movie.img} />{' '}
           </div>
           <div className="MovieInfo-data___information">
             <div className="MovieInfo__title">
               {' '}
-              <h2>{mock[0].title} </h2>{' '}
-              <Button img={<BsFillBookmarkFill />}> {t('movieDetails.btn')} </Button>
+              <h2>{movie.title} </h2>{' '}
+              <Button img={<BsFillBookmarkFill />}> {t('movieDetails.btn.add')} </Button>
             </div>
-            <p> {mock[0].description} </p>
+            <p> {movie.description} </p>
             <div className="MovieInfo__genres">
               {' '}
-              {mock[0]?.genres.map((genre, i) => {
+              {movie?.genres.map((genre, i) => {
                 return <div key={i}> {genre} </div>;
               })}{' '}
             </div>
@@ -51,9 +51,9 @@ export function MovieInfo() {
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.imdb')}</h4>{' '}
                 <h4 className="MovieInfo__ratingStar">
                   {' '}
-                  <AiFillStar size={25} /> {`${mock[0].imdbRating} /10`}{' '}
+                  <AiFillStar size={25} /> {`${movie.imdbRating} /10`}{' '}
                 </h4>
-                <h5>{mock[0].allRates} </h5>
+                <h5>{movie.allRates} </h5>
               </div>
               <div className="MovieInfo-display__rating">
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>
@@ -66,8 +66,8 @@ export function MovieInfo() {
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.general')}</h4>
                 <div className="MovieInfo__stadisticRate">
                   {' '}
-                  <h4> {mock[0].popularity.showStadistic}</h4>{' '}
-                  <h4> {mock[0].popularity.changingStadistic} </h4>
+                  <h4> {movie.popularity.showStadistic}</h4>{' '}
+                  <h4> {movie.popularity.changingStadistic} </h4>
                 </div>{' '}
               </div>
             </div>
@@ -78,7 +78,7 @@ export function MovieInfo() {
         <h2> {t('movieDetails.images')} </h2>
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
-          {mock[0]?.extraImgs.map((img, i) => {
+          {movie?.extraImgs.map((img, i) => {
             return <img src={img} alt={i} key={i} />;
           })}{' '}
         </div>

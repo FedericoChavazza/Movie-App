@@ -14,8 +14,8 @@
 }
 
 .MovieInfo__img {
-  height: 530px;
-  width: 340px;
+  height: 53rem;
+  width: 34rem;
   object-fit: cover;
   background-color: red;
 }
@@ -32,16 +32,16 @@
   @include display_flex(center, flex-start);
   width: 100%;
   height: 80%;
-  gap: 50px;
+  gap: 5rem;
 }
 
 .MovieInfo__genres {
   @include display_flex(flex-start, center);
   div {
     background-color: #f2f2f2;
-    padding: 12px;
-    border-radius: 20px;
-    margin: 10px;
+    padding: 1.2rem;
+    border-radius: 2rem;
+    margin: 1rem;
     font-weight: 600;
   }
 }
@@ -52,7 +52,7 @@
   overflow: hidden;
   @include display_flex(center, flex-start);
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5rem;
 }
 
 .MovieInfo__rate {
@@ -60,15 +60,15 @@
   background-color: #1d1d1d;
   justify-content: center;
   align-items: flex-start;
-  grid-gap: 30px;
-  gap: 30px;
+  grid-gap: 3rem;
+  gap: 3rem;
   text-align: center;
-  padding: 10px;
-  width: 400px;
-  height: 60px;
+  padding: 1rem;
+  width: 40rem;
+  height: 6rem;
 
   h4 {
-    margin-top: 10px;
+    margin-top: 1rem;
   }
 }
 
@@ -91,17 +91,17 @@
 }
 
 .MovieInfo-data___information p {
-  max-height: 300px;
+  max-height: 30rem;
   overflow-y: auto;
 }
 
 .MovieInfo-rating__title {
-  font-size: 13px;
+  font-size: 1.3rem;
   margin-bottom: 5px;
 }
 
 .MovieInfo-rating__title .MovieInfo__rate {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .MovieInfo__imdbRating {
@@ -110,7 +110,7 @@
   h5 {
     margin: 0;
     color: #b4b4b4;
-    margin-left: 30px;
+    margin-left: 3rem;
   }
   svg {
     color: #f3be34;
@@ -139,18 +139,18 @@
 
 .MovieInfo__extraImgs {
   @include display_flex(flex-start, center);
-  gap: 20px;
-  max-width: 1080px;
+  gap: 2rem;
+  max-width: 108rem;
   overflow-x: scroll;
   overflow-y: hidden;
   img {
-    width: 250px;
-    height: 150px;
+    width: 25rem;
+    height: 15rem;
   }
 }
 
 .MovieInfo-display__rating h4:nth-child(1) {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 .Movie-carousel__container {

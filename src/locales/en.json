@@ -9,7 +9,11 @@
     }
   },
   "movieDetails": {
-    "btn": "Add to watchList",
+    "btn": {
+      "add": "Add to watchList",
+      "back": "Go back!"
+    },
+
     "ratings": {
       "imdb": "IMDb RATING",
       "user": "YOUR RATING",

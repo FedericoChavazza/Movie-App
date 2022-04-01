@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.Carousel-container {
+  @include display_flex(flex-start, center);
+  width: 100%;
+  overflow-x: scroll;
+  gap: 1rem;
+  background-color: #f2f2f2;
+  padding: 1rem 5px 1rem 5px;
+}
+
+.Movie-container__date {
+  color: #4f4f4f;
+}
+
+.Carousel-container::-webkit-scrollbar {
+  width: 1rem;
+}
+.Carousel-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.Carousel-container::-webkit-scrollbar-thumb {
+  background-color: rgb(111, 119, 128);
+
+  border-radius: 2rem;
+}

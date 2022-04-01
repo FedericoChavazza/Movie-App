@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+
+.Homepage-container {
+  width: 100%;
+  height: 100vh;
+  @include display_flex(center, center);
+  flex-direction: column;
+}
+
+.Homepage-container__header {
+  width: 100%;
+  height: 8%;
+  background-color: rgb(111, 119, 128);
+}
+
+.Homepage-container__carousel {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  @include display_flex(center, center);
+  flex-direction: column;
+  max-width: 126rem;
+}
+
+.Homepage-container__carousel-container {
+  width: 100%;
+  @include display_flex(center, center);
+}
+
+.Homepage-container__Watchlist-title {
+  @include display_flex(flex-start, flex-end);
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.Homepage-container__Watchlist-title h1 {
+  margin: 0;
+}
+
+.Homepage-container__Watchlist-title h3 {
+  margin: 0;
+  color: #2f80ed;
+  cursor: pointer;
+  margin-bottom: 5px;
+}

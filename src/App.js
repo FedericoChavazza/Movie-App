@@ -5,7 +5,6 @@ import RouteFromPath from 'components/routes/RouteFromPath';
 import useTranslation from 'hooks/useTranslation';
 
 import routes from 'routes';
-
 import 'styles/styles.scss';
 import 'styles/variables.scss';
 

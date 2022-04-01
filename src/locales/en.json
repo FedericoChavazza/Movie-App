@@ -7,5 +7,18 @@
       "watchlist": "WatchList",
       "list": "see list"
     }
+  },
+  "movieDetails": {
+    "btn": {
+      "add": "Add to watchList",
+      "back": "Go back!"
+    },
+
+    "ratings": {
+      "imdb": "IMDb RATING",
+      "user": "YOUR RATING",
+      "general": "POPULARITY"
+    },
+    "images": "Images"
   }
 }

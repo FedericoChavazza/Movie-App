@@ -79,7 +79,6 @@ export function MovieInfo() {
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
           {mock[0]?.extraImgs.map((img, i) => {
-            console.log(img);
             return <img src={img} alt={i} key={i} />;
           })}{' '}
         </div>

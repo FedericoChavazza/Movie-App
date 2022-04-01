@@ -3,7 +3,6 @@ import { func, bool, string } from 'prop-types';
 import './styles.scss';
 
 const Button = ({ img, children, type = 'button', disabled, handleClick }) => {
-  console.log(img);
   return (
     <button className="button" onClick={handleClick} type={type} disabled={disabled}>
       {img ? (

@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react';
 
 export function useHorizontalScroll() {
-  const elRef = useRef();
+  const elementRef = useRef();
   useEffect(() => {
-    const el = elRef.current;
+    const el = elementRef.current;
     if (el) {
       const onWheel = e => {
         if (e.deltaY === 0) return;
@@ -17,5 +17,5 @@ export function useHorizontalScroll() {
       return () => el.removeEventListener('wheel', onWheel);
     }
   }, []);
-  return elRef;
+  return elementRef;
 }

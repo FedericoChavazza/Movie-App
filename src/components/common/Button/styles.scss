@@ -23,13 +23,11 @@
 }
 
 .button:hover {
-  background-color: var(--color-light-black);
   background-color: $colorLightBlack;
   cursor: pointer;
 }
 
 .button:disabled {
-  background-color: var(--color-light-grey);
   background-color: $colorLightGrey;
   cursor: unset;
 }

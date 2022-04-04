@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 
 export function Carousel({ movies }) {
-  console.log(movies);
   const scrollRef = useHorizontalScroll();
   return (
     <div ref={scrollRef} className="Carousel-container">

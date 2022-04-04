@@ -2,23 +2,13 @@ import { Carousel } from 'components/logicComponents/Carousel';
 import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { mockArrayData } from 'mock/mockData';
 
 export function HomePage() {
   const t = useTranslation();
   const [buttonValue, setButtonValue] = useState('discover');
-  const [buttonState, setButtonState] = useState({
-    trending: false,
-    discover: false,
-    top_rated: false,
-  });
-
-  const filterMovies = e => {
-    setButtonValue(e);
-    console.log(buttonValue);
-  };
 
   return (
     <div className="Homepage-container">
@@ -27,13 +17,13 @@ export function HomePage() {
         <div className="Homepage-container__carousel">
           <div className="Homepage-container__button">
             {' '}
-            <Button handleClick={() => filterMovies('trending')}>
+            <Button handleClick={() => setButtonValue('trending')}>
               {t('homepage.navBar.trending')}
             </Button>
-            <Button handleClick={() => filterMovies('discover')}>
+            <Button handleClick={() => setButtonValue('discover')}>
               {t('homepage.navBar.discover')}
             </Button>
-            <Button handleClick={() => filterMovies('top_rated')}>
+            <Button handleClick={() => setButtonValue('top_rated')}>
               {t('homepage.navBar.top_rated')}
             </Button>{' '}
           </div>

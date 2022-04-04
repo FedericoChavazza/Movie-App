@@ -14,8 +14,6 @@
 
   button {
     border: none;
-  }
-  .close {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -25,12 +23,45 @@
     border-radius: 5rem;
     cursor: pointer;
     background: #ff3434;
-    div {
-      margin-top: 3px;
-    }
   }
-  .close:hover {
+  button:hover {
     background: #a52424;
+  }
+  .Slider__left {
+    position: absolute;
+    top: 45%;
+    left: 10px;
+    background: rgba(111, 119, 128, 0.589);
+    border-radius: 5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    transition: 1s all ease;
+  }
+
+  .Slider__right {
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    background: rgba(111, 119, 128, 0.589);
+    border-radius: 5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .Slider__left:hover {
+    background: rgba(111, 119, 128, 0.9);
+    transition: 1s all ease;
+  }
+
+  .Slider__right:hover {
+    background: rgba(111, 119, 128, 0.9);
+    transition: 1s all ease;
   }
 }
 

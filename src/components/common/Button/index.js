@@ -2,16 +2,9 @@ import { func, bool, string } from 'prop-types';
 
 import './styles.scss';
 
-const Button = ({
-  classType = 'button',
-  img,
-  children,
-  type = 'button',
-  disabled,
-  handleClick,
-}) => {
+const Button = ({ img, children, type = 'button', disabled, handleClick }) => {
   return (
-    <button className={classType} onClick={handleClick} type={type} disabled={disabled}>
+    <button className="button" onClick={handleClick} type={type} disabled={disabled}>
       {img ? (
         <div>
           {' '}

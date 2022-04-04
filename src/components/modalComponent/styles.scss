@@ -1,0 +1,68 @@
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  overflow: hidden;
+  background-color: rgba(31, 32, 41, 0.75);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms 700ms ease;
+
+  button {
+    border: none;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    align-self: flex-start;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 5rem;
+    cursor: pointer;
+    background: #ff3434;
+    div {
+      margin-top: 3px;
+    }
+  }
+  .close:hover {
+    background: #a52424;
+  }
+}
+
+.visible {
+  pointer-events: auto;
+  opacity: 1;
+  transition: all 300ms ease-in-out;
+}
+
+.modal__wrap {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  min-height: 20%;
+  min-width: 20%;
+  margin: 0 auto;
+  border-radius: 4px;
+  background-color: #fff;
+  align-self: center;
+  box-shadow: 0 1.2rem 2.5rem 0 rgba(199, 175, 189, 0.25);
+  opacity: 0;
+  transition: opacity 250ms 250ms ease;
+  max-width: 128rem;
+  max-height: 73rem;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.visible .modal__wrap {
+  opacity: 1;
+  transition: opacity 250ms 500ms ease;
+}

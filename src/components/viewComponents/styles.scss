@@ -35,3 +35,40 @@
   align-self: flex-start;
   font-size: 1.4rem;
 }
+
+.Slider__left {
+  position: absolute;
+  top: 45%;
+  left: 10px;
+  background: rgba(111, 119, 128, 0.589);
+  border-radius: 5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  transition: 1s all ease;
+}
+
+.Slider__left:hover {
+  background: rgba(111, 119, 128, 0.9);
+  transition: 1s all ease;
+}
+
+.Slider__right:hover {
+  background: rgba(111, 119, 128, 0.9);
+  transition: 1s all ease;
+}
+
+.Slider__right {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  background: rgba(111, 119, 128, 0.589);
+  border-radius: 5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}

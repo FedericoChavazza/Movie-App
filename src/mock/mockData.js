@@ -19,13 +19,13 @@ export const mockArrayData = [
     extraImgs: [
       'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
 
-      'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
+      'https://hips.hearstapps.com/vidthumb/images/arcane-0fficial-trailer-netflix-1637671169.jpg?crop=0.748xw%3A1.00xh%3B0.106xw%2C0&resize=480%3A270',
 
-      'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
+      'https://www.pcclean.io/wp-content/uploads/2021/11/3803282984286092816.jpg',
 
-      'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
+      'https://www.awn.com/sites/default/files/styles/original/public/image/featured/ts_jinx_walkthru-1280.jpg?itok=AuQ95dXr',
 
-      'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
+      'https://s2.coinmarketcap.com/static/img/coins/64x64/15052.png',
     ],
   },
   {

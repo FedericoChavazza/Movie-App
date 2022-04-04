@@ -27,13 +27,13 @@ export function HomePage() {
           <div className="Homepage-container__button">
             {' '}
             <Button name="trending" handleClick={e => filterMovies(e)}>
-              Trending
+              {t('homepage.navBar.trending')}
             </Button>
             <Button name="discover" handleClick={e => filterMovies(e)}>
-              Discover
+              {t('homepage.navBar.discover')}
             </Button>
             <Button name="top_rated" handleClick={e => filterMovies(e)}>
-              Top Rated
+              {t('homepage.navBar.top_rated')}
             </Button>{' '}
           </div>
           <div className="Homepage-container__carousel-container">

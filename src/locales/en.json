@@ -6,6 +6,11 @@
     "titles": {
       "watchlist": "WatchList",
       "list": "see list"
+    },
+    "navBar": {
+      "trending": "Trending",
+      "discover": "Discover",
+      "top_rated": "Top Rated"
     }
   }
 }

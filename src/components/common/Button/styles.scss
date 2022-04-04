@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 1s all ease;
 }
 
 .button div {
@@ -23,8 +24,9 @@
 }
 
 .button:hover {
-  background-color: $colorLightBlack;
+  background-color: $colorLightBlue;
   cursor: pointer;
+  transition: 1s all ease;
 }
 
 .button:disabled {

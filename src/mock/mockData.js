@@ -469,7 +469,6 @@ export const mockArrayData = [
         'image-3':
           'https://notifarandula.club/wp-content/uploads/2021/11/%C2%BFQue-tan-bien-le-ha-ido-a-Arcane-en-Netflix.jpg',
       },
-
     ],
   },
 ];

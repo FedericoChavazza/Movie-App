@@ -15,8 +15,9 @@ export function HomePage() {
     top_rated: false,
   });
 
-  const filterMovies = async e => {
-    setButtonValue(e.target.name);
+  const filterMovies = e => {
+    setButtonValue(e);
+    console.log(buttonValue);
   };
 
   return (
@@ -26,13 +27,13 @@ export function HomePage() {
         <div className="Homepage-container__carousel">
           <div className="Homepage-container__button">
             {' '}
-            <Button name="trending" handleClick={e => filterMovies(e)}>
+            <Button handleClick={() => filterMovies('trending')}>
               {t('homepage.navBar.trending')}
             </Button>
-            <Button name="discover" handleClick={e => filterMovies(e)}>
+            <Button handleClick={() => filterMovies('discover')}>
               {t('homepage.navBar.discover')}
             </Button>
-            <Button name="top_rated" handleClick={e => filterMovies(e)}>
+            <Button handleClick={() => filterMovies('top_rated')}>
               {t('homepage.navBar.top_rated')}
             </Button>{' '}
           </div>

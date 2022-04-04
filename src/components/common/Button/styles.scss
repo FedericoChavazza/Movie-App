@@ -1,20 +1,32 @@
 @import '../../../styles/variables.scss';
 
 .button {
-  background-color: $colorBlack;
+  background-color: $colorBlue;
   border: none;
-  border-radius: 5px;
   color: $colorWhite;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   margin: 0.3rem 0;
   padding: 0.8rem;
-  width: 100%;
+  height: 5rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s all ease;
+}
+
+.button div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .button:hover {
-  background-color: $colorLightBlack;
+  background-color: $colorLightBlue;
   cursor: pointer;
+  transition: 1s all ease;
 }
 
 .button:disabled {

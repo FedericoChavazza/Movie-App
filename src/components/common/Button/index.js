@@ -6,22 +6,32 @@ const Button = ({
   value,
   children,
   name,
+  img,
   type = 'button',
   disabled,
   handleClick,
   customClass = 'button',
-}) => (
-  <button
-    name={name}
-    value={value}
-    className={customClass}
-    onClick={handleClick}
-    type={type}
-    disabled={disabled}
-  >
-    {children}
-  </button>
-);
+}) => {
+  return (
+    <button
+      name={name}
+      value={value}
+      className={customClass}
+      onClick={handleClick}
+      type={type}
+      disabled={disabled}
+    >
+      {img ? (
+        <div>
+          {' '}
+          {children} {img}{' '}
+        </div>
+      ) : (
+        <div> {children} </div>
+      )}
+    </button>
+  );
+};
 
 Button.propTypes = {
   handleClick: func,

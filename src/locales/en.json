@@ -12,5 +12,18 @@
       "discover": "Discover",
       "top_rated": "Top Rated"
     }
+  },
+  "movieDetails": {
+    "btn": {
+      "add": "Add to watchList",
+      "back": "Go back!"
+    },
+
+    "ratings": {
+      "imdb": "IMDb RATING",
+      "user": "YOUR RATING",
+      "general": "POPULARITY"
+    },
+    "images": "Images"
   }
 }

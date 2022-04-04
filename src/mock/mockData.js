@@ -8,10 +8,10 @@ export const mockArrayData = [
     watchList: false,
     id: 205,
     rate: 5,
+    topic: 'discover',
     genres: ['Adventure', 'Anime'],
     imdbRating: 9,
     allRates: '89k',
-    imdbRating: 9,
     popularity: {
       showStadistic: 7,
       changingStadistic: -2,
@@ -38,6 +38,7 @@ export const mockArrayData = [
     watchList: false,
     id: 204,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -67,6 +68,7 @@ export const mockArrayData = [
     watchList: false,
     id: 203,
     rate: 5,
+    topic: 'trending',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -93,10 +95,10 @@ export const mockArrayData = [
     description:
       'this is biggest description of all timeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
     date: '07/07/2001',
-    status: 'Trending',
     watchList: false,
     id: 202,
     rate: 5,
+    topic: 'trending',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -126,6 +128,7 @@ export const mockArrayData = [
     watchList: false,
     id: 201,
     rate: 5,
+    topic: 'trending',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -156,6 +159,7 @@ export const mockArrayData = [
     watchList: false,
     id: 200,
     rate: 5,
+    topic: 'trending',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -185,6 +189,7 @@ export const mockArrayData = [
     watchList: false,
     id: 199,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -215,6 +220,7 @@ export const mockArrayData = [
     watchList: false,
     id: 198,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -244,6 +250,7 @@ export const mockArrayData = [
     watchList: false,
     id: 197,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -274,6 +281,7 @@ export const mockArrayData = [
     watchList: false,
     id: 196,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -303,6 +311,7 @@ export const mockArrayData = [
     watchList: false,
     id: 195,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -333,6 +342,7 @@ export const mockArrayData = [
     watchList: false,
     id: 194,
     rate: 5,
+    topic: 'discover',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -362,6 +372,7 @@ export const mockArrayData = [
     watchList: false,
     id: 193,
     rate: 5,
+    topic: 'top_rated',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -392,6 +403,7 @@ export const mockArrayData = [
     watchList: false,
     id: 192,
     rate: 5,
+    topic: 'top_rated',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -421,6 +433,7 @@ export const mockArrayData = [
     watchList: false,
     id: 190,
     rate: 5,
+    topic: 'top_rated',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,
@@ -451,6 +464,7 @@ export const mockArrayData = [
     watchList: false,
     id: 191,
     rate: 5,
+    topic: 'top_rated',
     imdbRating: 9,
     popularity: {
       showStadistic: 7,

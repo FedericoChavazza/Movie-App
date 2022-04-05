@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import Button from 'components/common/Button';
 import { mockArrayData } from 'mock/mockData';
 import './styles.scss';
@@ -28,7 +27,7 @@ export function MovieInfo() {
 
   const scrollRef = useHorizontalScroll();
 
-  const imageHandler = img => {
+  const imageHandler = (e, img) => {
     setSelectedImage(img);
     setOpenModalState(true);
   };
@@ -90,8 +89,15 @@ export function MovieInfo() {
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
           {movie?.extraImgs.map((img, i) => {
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-            return <img onClick={() => imageHandler(img)} src={img} alt={i} key={i} />;
+            return (
+              <img
+                aria-hidden="true"
+                onClick={() => imageHandler(null, img)}
+                src={img}
+                alt={i}
+                key={i}
+              />
+            );
           })}{' '}
         </div>
       </div>

@@ -18,14 +18,10 @@ export function Slider({ img, imgArray }) {
 
   return (
     <div>
-      <button disabled={index === 0} onClick={() => goBackward()} className="Slider__left">
+      <button disabled={index === 0} onClick={goBackward} className="Slider__left">
         <AiFillCaretLeft size={25} />
       </button>
-      <button
-        className="Slider__right"
-        disabled={index === imgArray.length - 1}
-        onClick={() => goFoward()}
-      >
+      <button className="Slider__right" disabled={index === imgArray.length - 1} onClick={goFoward}>
         <AiFillCaretRight size={25} />
       </button>
       <img src={imgSelected || img} alt="selectedImg" />

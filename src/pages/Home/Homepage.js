@@ -8,8 +8,9 @@ import { useTrendingQuery } from 'services/api';
 import { useTopRatedQuery } from 'services/api';
 import { setCategories } from 'utils/api';
 import { getCategories } from 'utils/api';
-import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
+import { getWatchlist } from 'utils/api';
+import { BsFillBookmarkFill } from 'react-icons/bs';
 
 export function HomePage() {
   const t = useTranslation();
@@ -35,6 +36,8 @@ export function HomePage() {
     }
   }, [buttonValue, discoveryData, trendingData, topRatedData]);
 
+  const watchList = JSON.parse(getWatchlist());
+
   return (
     <div className="Homepage-container">
       <div className="Homepage-container__header"></div>{' '}
@@ -56,15 +59,20 @@ export function HomePage() {
             {' '}
             <Carousel movies={movies} />{' '}
           </div>
-          <div className="Homepage-container__Watchlist-title">
-            {' '}
-            <h1> {t('homepage.titles.watchlist')} </h1>
-            <h3> {t('homepage.titles.list')} </h3>
-          </div>{' '}
-          <div className="Homepage-container__carousel-container">
-            {' '}
-            <Carousel movies={mockArrayData} />{' '}
-          </div>
+          {watchList !== null && watchList.length !== 0 ? (
+            <>
+              {' '}
+              <div className="Homepage-container__Watchlist-title">
+                {' '}
+                <h1> {t('homepage.titles.watchlist')} </h1>
+                <h3> {t('homepage.titles.list')} </h3>
+              </div>{' '}
+              <div className="Homepage-container__carousel-container">
+                {' '}
+                <Carousel movies={watchList} />
+              </div>{' '}
+            </>
+          ) : null}
         </div>{' '}
       </div>
     </div>

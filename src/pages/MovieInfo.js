@@ -12,8 +12,13 @@ import { BiArrowBack } from 'react-icons/bi';
 import { setWatchlist, getWatchlist } from 'utils/api';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
+import Modal from 'components/modalComponent/Modal';
+import { Slider } from 'components/viewComponents/Slider';
+
 
 export function MovieInfo() {
+  const [openModalState, setOpenModalState] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
   const movie = mockArrayData[0];
   const params = useParams().id;
   let movieState = useLocation()?.state;
@@ -50,6 +55,11 @@ export function MovieInfo() {
   };
 
   const scrollRef = useHorizontalScroll();
+
+  const imageHandler = img => {
+    setSelectedImage(img);
+    setOpenModalState(true);
+  };
 
   return (
     <div className="MovieInfo-container">
@@ -107,15 +117,23 @@ export function MovieInfo() {
             </div>
           </div>
         </div>
-        <div className="Movie-carousel__container">
-          <h2> {t('movieDetails.images')} </h2>
-          <div ref={scrollRef} className="MovieInfo__extraImgs">
-            {movie?.extraImgs.map((img, i) => {
-              return <img src={img} alt={i} key={i} />;
-            })}
-          </div>
+      </div>
+      <div className="Movie-carousel__container">
+        <h2> {t('movieDetails.images')} </h2>
+        <div ref={scrollRef} className="MovieInfo__extraImgs">
+          {' '}
+          {movie?.extraImgs.map((img, i) => {
+            return (
+              <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />
+            );
+          })}{' '}
         </div>
       </div>
+      {openModalState && (
+        <Modal show={openModalState} onClose={() => setOpenModalState(false)}>
+          <Slider imgArray={movie?.extraImgs} img={selectedImage} />
+        </Modal>
+      )}
     </div>
   );
 }

@@ -27,7 +27,7 @@ export function MovieInfo() {
 
   const scrollRef = useHorizontalScroll();
 
-  const imageHandler = (e, img) => {
+  const imageHandler = img => {
     setSelectedImage(img);
     setOpenModalState(true);
   };
@@ -90,13 +90,7 @@ export function MovieInfo() {
           {' '}
           {movie?.extraImgs.map((img, i) => {
             return (
-              <img
-                aria-hidden="true"
-                onClick={() => imageHandler(null, img)}
-                src={img}
-                alt={i}
-                key={i}
-              />
+              <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />
             );
           })}{' '}
         </div>

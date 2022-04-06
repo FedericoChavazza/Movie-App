@@ -13,16 +13,14 @@ const Modal = ({ modalStyle, children, show, onClose, backdropStyle }) => {
     }
   }, [show, backdropStyle]);
   return (
-    <>
-      <div ref={modalRef} className="modal">
-        <div style={modalStyle} className="modal__wrap">
-          <Button classType="close" handleClick={onClose}>
-            <AiOutlineCloseCircle size={20} />
-          </Button>
-          {children}
-        </div>
+    <div ref={modalRef} className="modal">
+      <div style={modalStyle} className="modal__wrap">
+        <Button classType="close" handleClick={onClose}>
+          <AiOutlineCloseCircle size={20} />
+        </Button>
+        {children}
       </div>
-    </>
+    </div>
   );
 };
 

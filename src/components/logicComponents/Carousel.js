@@ -8,8 +8,8 @@ export function Carousel({ movies }) {
   const scrollRef = useHorizontalScroll();
   return (
     <div ref={scrollRef} className="Carousel-container">
-      {movies !== undefined && movies.length !== 0 ? (
-        movies?.map(movie => (
+      {movies && movies.length !== 0 ? (
+        movies.map(movie => (
           <Link to={`/movie/${movie.id}`}>
             <Movie
               key={movie.id}

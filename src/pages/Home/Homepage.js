@@ -3,37 +3,41 @@ import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
 import { useState, useEffect } from 'react';
-import { useDiscoveryQuery } from 'services/api';
-import { useTrendingQuery } from 'services/api';
-import { useTopRatedQuery } from 'services/api';
-import { setCategories } from 'utils/api';
-import { getCategories } from 'utils/api';
+import { useLazyDiscoveryQuery, useLazyTrendingQuery, useLazyTopRatedQuery } from 'services/api';
 import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
 
 export function HomePage() {
   const t = useTranslation();
 
-  const category = getCategories();
-
-  const [buttonValue, setButtonValue] = useState(category || 'discover');
+  const [buttonValue, setButtonValue] = useState('discover');
   const [movies, setMovies] = useState([]);
-  const { data: discoveryData } = useDiscoveryQuery();
-  const { data: trendingData } = useTrendingQuery();
-  const { data: topRatedData } = useTopRatedQuery();
+  const [discoveryTrigger, discoverData] = useLazyDiscoveryQuery();
+  const [trendingTrigger, trendingData] = useLazyTrendingQuery();
+  const [topRatedTrigger, topRatedData] = useLazyTopRatedQuery();
 
   useEffect(() => {
-    setCategories(buttonValue);
     if (buttonValue === 'discover') {
-      setMovies(discoveryData?.results);
+      discoveryTrigger();
+      setMovies(discoverData?.data?.results);
     }
     if (buttonValue === 'trending') {
-      setMovies(trendingData?.results);
+      trendingTrigger();
+      setMovies(trendingData?.data?.results);
     }
     if (buttonValue === 'top_rated') {
-      setMovies(topRatedData?.results);
+      topRatedTrigger();
+      setMovies(topRatedData?.data?.results);
     }
-  }, [buttonValue, discoveryData, trendingData, topRatedData]);
+  }, [
+    buttonValue,
+    discoverData?.data?.results,
+    trendingData?.data?.results,
+    topRatedData?.data?.results,
+    discoveryTrigger,
+    trendingTrigger,
+    topRatedTrigger,
+  ]);
 
   return (
     <div className="Homepage-container">
@@ -44,7 +48,7 @@ export function HomePage() {
             {buttonHomepageMap?.map((button, i) => (
               <Button
                 key={i}
-                customClass={category === button.value ? 'selected' : undefined}
+                customClass={button.value === buttonValue ? 'selected' : undefined}
                 handleClick={() => setButtonValue(button.value)}
               >
                 {' '}

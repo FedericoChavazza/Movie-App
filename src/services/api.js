@@ -26,9 +26,9 @@ export const api = createApi({
 });
 
 export const {
-  useDiscoveryQuery,
-  useTrendingQuery,
-  useTopRatedQuery,
+  useLazyDiscoveryQuery,
+  useLazyTrendingQuery,
+  useLazyTopRatedQuery,
 
   endpoints: {
     discovery: { matchFulfilled: discoveryFulfilled },

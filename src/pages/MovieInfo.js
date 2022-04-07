@@ -8,7 +8,6 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
 import { useHistory } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { BiArrowBack } from 'react-icons/bi';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
 import { Slider } from 'components/viewComponents/Slider';

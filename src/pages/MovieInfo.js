@@ -8,8 +8,14 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
 import { useHistory } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
+import { BiArrowBack } from 'react-icons/bi';
+import Modal from 'components/modalComponent/Modal';
+import { useState } from 'react';
+import { Slider } from 'components/viewComponents/Slider';
 
 export function MovieInfo() {
+  const [openModalState, setOpenModalState] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
   const movie = mockArrayData[0];
 
   const history = useHistory();
@@ -21,6 +27,11 @@ export function MovieInfo() {
   };
 
   const scrollRef = useHorizontalScroll();
+
+  const imageHandler = img => {
+    setSelectedImage(img);
+    setOpenModalState(true);
+  };
 
   return (
     <div className="MovieInfo-container">
@@ -79,10 +90,17 @@ export function MovieInfo() {
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
           {movie?.extraImgs.map((img, i) => {
-            return <img src={img} alt={i} key={i} />;
+            return (
+              <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />
+            );
           })}{' '}
         </div>
       </div>
+      {openModalState && (
+        <Modal show={openModalState} onClose={() => setOpenModalState(false)}>
+          <Slider imgArray={movie?.extraImgs} img={selectedImage} />
+        </Modal>
+      )}
     </div>
   );
 }

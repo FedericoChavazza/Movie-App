@@ -2,71 +2,37 @@ import { Carousel } from 'components/logicComponents/Carousel';
 import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
-import { useState, useEffect } from 'react';
-import { useLazyDiscoveryQuery, useLazyTrendingQuery, useLazyTopRatedQuery } from 'services/api';
+import { useState, useEffect, useMemo } from 'react';
+import { useLazyMovieFetchQuery } from 'services/api';
 import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
 import { useSelector, useDispatch } from 'react-redux';
-import { setDiscover, setTrending, setTopRated } from 'state/slices/movieSlice';
+import { setStoreMovies } from 'state/slices/movieSlice';
+import endpoints from 'constants/endpoints.js';
 
 export function HomePage() {
   const t = useTranslation();
   const cachingCategory = useSelector(state => state.movies.moviesData);
   const [buttonValue, setButtonValue] = useState('discover');
   const [movies, setMovies] = useState([]);
-  const [discoveryTrigger, discoverData] = useLazyDiscoveryQuery();
-  const [trendingTrigger, trendingData] = useLazyTrendingQuery();
-  const [topRatedTrigger, topRatedData] = useLazyTopRatedQuery();
+  const [trigger, moviesData] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const triggerEndpoints = async () => {
-      if (buttonValue === 'discover') {
-        if (cachingCategory.discover.loaded) {
-          setMovies(cachingCategory.discover.data);
-        } else {
-          await discoveryTrigger();
-          setMovies(discoverData?.data?.results);
-          dispatch(setDiscover({ loaded: true, data: discoverData?.data?.results }));
-        }
+    (async () => {
+      if (!cachingCategory[buttonValue].loaded) {
+        await trigger(endpoints[buttonValue]);
+        dispatch(
+          setStoreMovies({
+            category: buttonValue,
+            loaded: true,
+            data: moviesData?.data?.results,
+          })
+        );
       }
-      if (buttonValue === 'trending') {
-        if (cachingCategory.trending.loaded) {
-          setMovies(cachingCategory.trending.data);
-        } else {
-          await trendingTrigger();
-          setMovies(trendingData?.data?.results);
-          dispatch(setTrending({ loaded: true, data: trendingData?.data?.results }));
-        }
-      }
-      if (buttonValue === 'top_rated') {
-        if (cachingCategory.top_rated.loaded) {
-          setMovies(cachingCategory.top_rated.data);
-        } else {
-          await topRatedTrigger();
-          setMovies(topRatedData?.data?.results);
-          dispatch(setTopRated({ loaded: true, data: topRatedData?.data?.results }));
-        }
-        topRatedTrigger();
-        setMovies(topRatedData?.data?.results);
-      }
-    };
-    triggerEndpoints();
-  }, [
-    buttonValue,
-    discoverData?.data?.results,
-    discoveryTrigger,
-    dispatch,
-    topRatedData?.data?.results,
-    topRatedTrigger,
-    trendingData?.data?.results,
-    trendingTrigger,
-    cachingCategory.top_rated,
-    cachingCategory.discover.loaded,
-    cachingCategory.discover.data,
-    cachingCategory.trending.loaded,
-    cachingCategory.trending.data,
-  ]);
+      setMovies(cachingCategory[buttonValue].data);
+    })();
+  }, [buttonValue, cachingCategory, dispatch, moviesData?.data?.results, trigger]);
 
   return (
     <div className="Homepage-container">
@@ -74,11 +40,13 @@ export function HomePage() {
       <div className="Homepage-container__content">
         <div className="Homepage-container__carousel">
           <div className="Homepage-container__button">
-            {buttonHomepageMap?.map((button, i) => (
+            {buttonHomepageMap?.map(button => (
               <Button
-                key={i}
+                key={button.title}
                 customClass={button.value === buttonValue ? 'selected' : undefined}
-                handleClick={() => setButtonValue(button.value)}
+                handleClick={() => {
+                  setButtonValue(button.value);
+                }}
               >
                 {' '}
                 {t(button.title)}{' '}

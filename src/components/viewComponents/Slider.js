@@ -2,18 +2,25 @@ import { AiFillCaretLeft } from 'react-icons/ai';
 import { AiFillCaretRight } from 'react-icons/ai';
 import { useState } from 'react';
 
-export function Slider({ img, imgArray }) {
-  const [imgSelected, setImgSelected] = useState(img);
+export function Slider({ img, imgArray, imgIndex }) {
+  const [imgSelected, setImgSelected] = useState(imgIndex);
+
+  console.log(imgIndex);
+  console.log(imgSelected);
 
   const index =
-    imgArray?.indexOf(imgSelected) === -1 ? imgArray?.indexOf(img) : imgArray.indexOf(imgSelected);
+    imgArray?.indexOf(imgSelected) === -1
+      ? imgArray?.indexOf(imgIndex)
+      : imgArray.indexOf(imgSelected);
+
+  console.log(index);
 
   const goFoward = () => {
-    setImgSelected(imgArray[index + 1]);
+    setImgSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index + 1]?.file_path}`);
   };
 
   const goBackward = () => {
-    setImgSelected(imgArray[index - 1]);
+    setImgSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index - 1]?.file_path}`);
   };
 
   return (

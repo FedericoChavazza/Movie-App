@@ -22,6 +22,18 @@ export const api = createApi({
         method: 'GET',
       }),
     }),
+    movieDetail: builder.query({
+      query: id => ({
+        url: `${endpoints.movieDetail}/${id}?api_key=${process.env.REACT_APP_API_KEY}`,
+        method: 'GET',
+      }),
+    }),
+    imageMovieDetail: builder.query({
+      query: id => ({
+        url: `${endpoints.movieDetail}/${id}${endpoints.imageDetail}?api_key=${process.env.REACT_APP_API_KEY}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -29,10 +41,6 @@ export const {
   useLazyDiscoveryQuery,
   useLazyTrendingQuery,
   useLazyTopRatedQuery,
-
-  endpoints: {
-    discovery: { matchFulfilled: discoveryFulfilled },
-    trending: { matchFulfilled: trendingFulfilled },
-    topRated: { matchFulfilled: topRatedFulfilled },
-  },
+  useMovieDetailQuery,
+  useImageMovieDetailQuery,
 } = api;

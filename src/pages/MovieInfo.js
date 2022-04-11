@@ -6,16 +6,26 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
 import { Slider } from 'components/viewComponents/Slider';
+import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
+  const [imageInArray, setImageInArray] = useState('');
   const movie = mockArrayData[0];
+  const paramId = useParams().id;
+  console.log(typeof paramId);
+
+  const { data: movieData } = useMovieDetailQuery(paramId);
+
+  const { data: imageData } = useImageMovieDetailQuery(paramId);
+
+  console.log(imageData);
 
   const history = useHistory();
 
@@ -28,7 +38,9 @@ export function MovieInfo() {
   const scrollRef = useHorizontalScroll();
 
   const imageHandler = img => {
-    setSelectedImage(img);
+    const imageUrl = `${process.env.REACT_APP_ORIGINAL_IMG}${img}`;
+    setImageInArray(img);
+    setSelectedImage(imageUrl);
     setOpenModalState(true);
   };
 
@@ -39,19 +51,23 @@ export function MovieInfo() {
         <div className="MovieInfo-data__container">
           <div>
             {' '}
-            <img className="MovieInfo__img" src={movie.img} alt={movie.img} />{' '}
+            <img
+              className="MovieInfo__img"
+              src={`${process.env.REACT_APP_ORIGINAL_IMG}${movieData?.backdrop_path}`}
+              alt={movie.img}
+            />{' '}
           </div>
           <div className="MovieInfo-data___information">
             <div className="MovieInfo__title">
               {' '}
-              <h2>{movie.title} </h2>{' '}
+              <h2>{movieData?.original_title} </h2>{' '}
               <Button img={<BsFillBookmarkFill />}> {t('movieDetails.btn.add')} </Button>
             </div>
-            <p> {movie.description} </p>
+            <p> {movieData?.overview} </p>
             <div className="MovieInfo__genres">
               {' '}
-              {movie?.genres.map((genre, i) => {
-                return <div key={i}> {genre} </div>;
+              {movieData?.genres.map((genre, i) => {
+                return <div key={i}> {genre.name} </div>;
               })}{' '}
             </div>
             <div className="MovieInfo__rate">
@@ -76,8 +92,7 @@ export function MovieInfo() {
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.general')}</h4>
                 <div className="MovieInfo__stadisticRate">
                   {' '}
-                  <h4> {movie.popularity.showStadistic}</h4>{' '}
-                  <h4> {movie.popularity.changingStadistic} </h4>
+                  <h4> {movieData?.vote_average}</h4>
                 </div>{' '}
               </div>
             </div>
@@ -88,16 +103,22 @@ export function MovieInfo() {
         <h2> {t('movieDetails.images')} </h2>
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
-          {movie?.extraImgs.map((img, i) => {
+          {imageData?.backdrops.map((img, i) => {
             return (
-              <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />
+              <img
+                aria-hidden="true"
+                onClick={() => imageHandler(img.file_path)}
+                src={`${process.env.REACT_APP_ORIGINAL_IMG}${img.file_path}`}
+                alt={i}
+                key={i}
+              />
             );
           })}{' '}
         </div>
       </div>
       {openModalState && (
         <Modal show={openModalState} onClose={() => setOpenModalState(false)}>
-          <Slider imgArray={movie?.extraImgs} img={selectedImage} />
+          <Slider imgIndex={imageInArray} imgArray={imageData?.backdrops} img={selectedImage} />
         </Modal>
       )}
     </div>

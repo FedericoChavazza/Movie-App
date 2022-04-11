@@ -11,6 +11,7 @@ import routesPaths from 'routes/routesPaths';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
 import { Slider } from 'components/viewComponents/Slider';
+import { IoReturnUpBackOutline } from 'react-icons/io';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
@@ -34,7 +35,9 @@ export function MovieInfo() {
 
   return (
     <div className="MovieInfo-container">
-      <Button handleClick={() => goBack()}>{t('movieDetails.btn.back')}</Button>
+      <Button handleClick={() => goBack()}>
+        <IoReturnUpBackOutline size={20} />
+      </Button>
       <div className="MovieInfo__data">
         <div className="MovieInfo-data__container">
           <div>

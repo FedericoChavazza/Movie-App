@@ -43,7 +43,9 @@ export function MovieInfo() {
 
   return (
     <div className="MovieInfo-container">
-      <Button handleClick={() => goBack()}>{t('movieDetails.btn.back')}</Button>
+      <Button customClass="MovieInfo__btn" handleClick={() => goBack()}>
+        {t('movieDetails.btn.back')}
+      </Button>
       <div className="MovieInfo__data">
         <div className="MovieInfo-data__container">
           <div>

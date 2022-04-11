@@ -3,14 +3,15 @@
 .MovieInfo-container {
   @include display_flex(center, center);
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  width: 56%;
+  margin: 0 auto;
 }
 
 .MovieInfo__data {
   @include display_flex(center, center);
   height: 80%;
-  width: 70%;
+  width: 100%;
 }
 
 .MovieInfo__img {
@@ -156,4 +157,9 @@
 
 .Movie-carousel__container {
   height: 40%;
+  width: 100%;
+}
+
+.MovieInfo__btn {
+  align-self: flex-start;
 }

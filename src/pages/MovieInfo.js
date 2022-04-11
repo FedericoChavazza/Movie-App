@@ -55,7 +55,7 @@ export function MovieInfo() {
               <img
                 className="MovieInfo__img"
                 src={`${process.env.REACT_APP_ORIGINAL_IMG}${movieData?.backdrop_path}`}
-                alt={movie.img}
+                alt={movieData?.original_title}
               />{' '}
             </div>
             <div className="MovieInfo-data___information">

@@ -19,13 +19,10 @@ export function MovieInfo() {
   const [imageInArray, setImageInArray] = useState('');
   const movie = mockArrayData[0];
   const paramId = useParams().id;
-  console.log(typeof paramId);
 
   const { data: movieData } = useMovieDetailQuery(paramId);
 
   const { data: imageData } = useImageMovieDetailQuery(paramId);
-
-  console.log(imageData);
 
   const history = useHistory();
 

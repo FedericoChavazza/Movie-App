@@ -34,6 +34,12 @@ export const api = createApi({
         method: 'GET',
       }),
     }),
+    imdbDetails: builder.query({
+      query: imdbId => {
+        console.log(imdbId);
+        return { url: `${endpoints.title}/${imdbId}`, method: 'GET' };
+      },
+    }),
   }),
 });
 
@@ -43,4 +49,5 @@ export const {
   useLazyTopRatedQuery,
   useMovieDetailQuery,
   useImageMovieDetailQuery,
+  useImdbDetailsQuery,
 } = api;

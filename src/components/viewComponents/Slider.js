@@ -4,23 +4,29 @@ import { useState } from 'react';
 
 export function Slider({ img, imgArray, imgIndex }) {
   const [imgSelected, setImgSelected] = useState(imgIndex);
+  const [showImageSelected, setShowImageSelected] = useState(img);
 
-  console.log(imgIndex);
-  console.log(imgSelected);
+  const functionIndexImg = value => {
+    return imgArray
+      ?.map(e => {
+        return e.file_path;
+      })
+      .indexOf(value);
+  };
 
   const index =
-    imgArray?.indexOf(imgSelected) === -1
-      ? imgArray?.indexOf(imgIndex)
-      : imgArray.indexOf(imgSelected);
-
-  console.log(index);
+    functionIndexImg(imgSelected) === -1
+      ? functionIndexImg(imgIndex)
+      : functionIndexImg(imgSelected);
 
   const goFoward = () => {
-    setImgSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index + 1]?.file_path}`);
+    setImgSelected(imgArray[index + 1]?.file_path);
+    setShowImageSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index + 1]?.file_path}`);
   };
 
   const goBackward = () => {
-    setImgSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index - 1]?.file_path}`);
+    setImgSelected(imgArray[index - 1]?.file_path);
+    setShowImageSelected(`${process.env.REACT_APP_ORIGINAL_IMG}${imgArray[index - 1]?.file_path}`);
   };
 
   return (
@@ -31,7 +37,7 @@ export function Slider({ img, imgArray, imgIndex }) {
       <button className="Slider__right" disabled={index === imgArray.length - 1} onClick={goFoward}>
         <AiFillCaretRight size={25} />
       </button>
-      <img src={imgSelected || img} alt="selectedImg" />
+      <img src={showImageSelected || img} alt="selectedImg" />
     </div>
   );
 }

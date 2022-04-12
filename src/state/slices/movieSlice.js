@@ -21,18 +21,12 @@ const movieSlice = createSlice({
   name: 'movieSlice',
   initialState,
   reducers: {
-    setDiscover(state, { payload }) {
-      state.moviesData = { ...state.moviesData, discover: payload };
-    },
-    setTrending(state, { payload }) {
-      state.moviesData = { ...state.moviesData, trending: payload };
-    },
-    setTopRated(state, { payload }) {
-      state.moviesData = { ...state.moviesData, top_rated: payload };
+    setStoreMovies(state, { payload }) {
+      state.moviesData = { ...state.moviesData, [payload.category]: payload };
     },
   },
 });
 
-export const { setDiscover, setTopRated, setTrending } = movieSlice.actions;
+export const { setStoreMovies } = movieSlice.actions;
 
 export default movieSlice.reducer;

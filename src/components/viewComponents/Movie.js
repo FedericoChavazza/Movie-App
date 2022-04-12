@@ -1,7 +1,7 @@
 import './styles.scss';
 import { getWatchlist } from 'utils/api';
 
-export function Movie({ title, date, img, icon, id }) {
+export function Movie({ title, date, img, icon, id, language }) {
   const watchlist = JSON.parse(getWatchlist());
   return (
     <div className="Movie-container">
@@ -16,6 +16,12 @@ export function Movie({ title, date, img, icon, id }) {
       <div className="Movie-container__details">
         <p className="Movie-container__title"> {title} </p>
         <div className="Movie-container__date"> {date} </div>
+        {language && (
+          <div className="Movie-container__language">
+            {' '}
+            <h4> Language:</h4> <div> {language} </div>{' '}
+          </div>
+        )}
       </div>
     </div>
   );

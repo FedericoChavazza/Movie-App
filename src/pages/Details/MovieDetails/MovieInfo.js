@@ -15,7 +15,6 @@ import { useEffect, useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
 
-
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');

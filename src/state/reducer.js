@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 import { api } from 'services/api';
 import movieSlice from './slices/movieSlice';
 
-import movieSlice from './slices/movieSlice';
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,

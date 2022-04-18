@@ -35,7 +35,7 @@ export function MovieInfo() {
 
   return (
     <div className="MovieInfo-container">
-      <Button handleClick={() => goBack()}>
+      <Button handleClick={goBack}>
         <IoReturnUpBackOutline size={20} />
       </Button>
       <div className="MovieInfo__data">

@@ -6,10 +6,9 @@ import LOADER from 'imgs/loader.gif';
 
 export function Carousel({ movies, isLoading }) {
   const scrollRef = useHorizontalScroll();
-  console.log(isLoading === true);
   return (
     <div ref={scrollRef} className="Carousel-container">
-      {!isLoading || (movies && movies.length !== 0) ? (
+      {!isLoading && movies && movies.length !== 0 ? (
         movies.map(movie => (
           <Link to={`/movie/${movie.id}`}>
             <Movie

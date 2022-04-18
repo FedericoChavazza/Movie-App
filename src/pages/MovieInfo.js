@@ -11,7 +11,7 @@ import routesPaths from 'routes/routesPaths';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
 import { Slider } from 'components/viewComponents/Slider';
-import { IoReturnUpBackOutline } from 'react-icons/io';
+import { IoReturnUpBackOutline } from 'react-icons/io5';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);

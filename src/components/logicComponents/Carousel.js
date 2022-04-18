@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 import LOADER from 'imgs/loader.gif';
 
-export function Carousel({ movies }) {
+export function Carousel({ movies, loading }) {
   const scrollRef = useHorizontalScroll();
+  console.log(loading);
   return (
     <div ref={scrollRef} className="Carousel-container">
       {movies && movies.length !== 0 ? (

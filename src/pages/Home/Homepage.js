@@ -15,24 +15,24 @@ export function HomePage() {
   const cachingCategory = useSelector(state => state.movies.moviesData);
   const [buttonValue, setButtonValue] = useState('discover');
   const [movies, setMovies] = useState([]);
-  const [trigger, moviesData] = useLazyMovieFetchQuery();
+  const [trigger] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       if (!cachingCategory[buttonValue].loaded) {
-        await trigger(endpoints[buttonValue]);
+        const { data } = await trigger(endpoints[buttonValue]);
         dispatch(
           setStoreMovies({
             category: buttonValue,
             loaded: true,
-            data: moviesData?.data?.results,
+            data: data?.results,
           })
         );
       }
       setMovies(cachingCategory[buttonValue].data);
     })();
-  }, [buttonValue, cachingCategory, dispatch, moviesData?.data?.results, trigger]);
+  }, [buttonValue, cachingCategory, trigger, dispatch]);
 
   return (
     <div className="Homepage-container">

@@ -2,7 +2,7 @@ import { Carousel } from 'components/logicComponents/Carousel';
 import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useLazyMovieFetchQuery } from 'services/api';
 import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
@@ -15,7 +15,7 @@ export function HomePage() {
   const cachingCategory = useSelector(state => state.movies.moviesData);
   const [buttonValue, setButtonValue] = useState('discover');
   const [movies, setMovies] = useState([]);
-  const [trigger] = useLazyMovieFetchQuery();
+  const [trigger, { isLoading }] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export function HomePage() {
           </div>
           <div className="Homepage-container__carousel-container">
             {' '}
-            <Carousel movies={movies} />{' '}
+            <Carousel isLoading={isLoading} movies={movies} />{' '}
           </div>
           <div className="Homepage-container__Watchlist-title">
             {' '}

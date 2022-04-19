@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import Button from 'components/common/Button';
 import { mockArrayData } from 'mock/mockData';
 import './styles.scss';
@@ -11,11 +12,14 @@ import routesPaths from 'routes/routesPaths';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
 import { Slider } from 'components/viewComponents/Slider';
-import { IoReturnUpBackOutline } from 'react-icons/io';
+import { IoReturnUpBackOutline } from 'react-icons/io5';
+import { rating } from 'mappings/rateMovieInfoMap';
+import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
+  const [openTooltipRate, setOpenTooltipRate] = useState(false);
   const movie = mockArrayData[0];
 
   const history = useHistory();
@@ -41,29 +45,23 @@ export function MovieInfo() {
       <div className="MovieInfo__data">
         <div className="MovieInfo-data__container">
           <div>
-            {' '}
             <img className="MovieInfo__img" src={movie.img} alt={movie.img} />{' '}
           </div>
           <div className="MovieInfo-data___information">
             <div className="MovieInfo__title">
-              {' '}
               <h2>{movie.title} </h2>{' '}
               <Button img={<BsFillBookmarkFill />}> {t('movieDetails.btn.add')} </Button>
             </div>
             <p> {movie.description} </p>
             <div className="MovieInfo__genres">
-              {' '}
               {movie?.genres.map((genre, i) => {
                 return <div key={i}> {genre} </div>;
               })}{' '}
             </div>
             <div className="MovieInfo__rate">
-              {' '}
               <div className="MovieInfo__imdbRating">
-                {' '}
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.imdb')}</h4>{' '}
                 <h4 className="MovieInfo__ratingStar">
-                  {' '}
                   <AiFillStar size={25} /> {`${movie.imdbRating} /10`}{' '}
                 </h4>
                 <h5>{movie.allRates} </h5>
@@ -71,14 +69,28 @@ export function MovieInfo() {
               <div className="MovieInfo-display__rating">
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>
                 <h4 className="MovieInfo__ownRating">
-                  {' '}
-                  <AiOutlineStar size={25} /> Rate{' '}
+                  {openTooltipRate && (
+                    <ClickOutside onClick={() => setOpenTooltipRate(false)}>
+                      <div className="MovieInfo__onwRating-rate">
+                        <fieldset className="rate">
+                          {rating.map(rates => {
+                            return (
+                              <>
+                                <input {...rates.input}></input> <label {...rates.label}> </label>
+                              </>
+                            );
+                          })}
+                        </fieldset>
+                      </div>
+                    </ClickOutside>
+                  )}
+                  <AiOutlineStar onClick={() => setOpenTooltipRate(!openTooltipRate)} size={25} />{' '}
+                  Rate{' '}
                 </h4>
               </div>
               <div className="MovieInfo-display__rating">
                 <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.general')}</h4>
                 <div className="MovieInfo__stadisticRate">
-                  {' '}
                   <h4> {movie.popularity.showStadistic}</h4>{' '}
                   <h4> {movie.popularity.changingStadistic} </h4>
                 </div>{' '}
@@ -90,7 +102,6 @@ export function MovieInfo() {
       <div className="Movie-carousel__container">
         <h2> {t('movieDetails.images')} </h2>
         <div ref={scrollRef} className="MovieInfo__extraImgs">
-          {' '}
           {movie?.extraImgs.map((img, i) => {
             return (
               <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />

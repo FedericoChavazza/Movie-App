@@ -16,6 +16,7 @@ import { Slider } from 'components/viewComponents/Slider';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
 
+
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
@@ -67,7 +68,7 @@ export function MovieInfo() {
   return (
     <div className="MovieInfo-container">
       <div className="MovieInfo-data__holeContainer">
-        <Button customClass="MovieInfo__btn" handleClick={() => goBack()}>
+        <Button customClass="MovieInfo__btn" handleClick={goBack}>
           <BiArrowBack size={25} />
         </Button>
         <div className="MovieInfo__data">

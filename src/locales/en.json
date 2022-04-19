@@ -16,7 +16,8 @@
   "movieDetails": {
     "btn": {
       "add": "Add to watchList",
-      "back": "Go back!"
+      "back": "Go back!",
+      "rate": "Rate"
     },
 
     "ratings": {

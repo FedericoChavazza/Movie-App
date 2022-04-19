@@ -5,7 +5,7 @@ export function Movie({ title, date, img, icon, id }) {
   const watchlist = JSON.parse(getWatchlist());
   return (
     <div className="Movie-container">
-      {watchlist?.map(value => {
+      {watchlist.map(value => {
         return value.id === id && <div className="Movie__bookmark"> {icon} </div>;
       })}
       <img

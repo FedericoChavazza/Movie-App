@@ -3,15 +3,13 @@ import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { useLazyMovieFetchQuery } from 'services/api';
-import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStoreMovies } from 'state/slices/movieSlice';
 import endpoints from 'constants/endpoints.js';
 import { getWatchlist } from 'utils/api';
-import { BsFillBookmarkFill } from 'react-icons/bs';
 
 export function HomePage() {
   const t = useTranslation();
@@ -44,7 +42,6 @@ export function HomePage() {
       <div className="Homepage-container__content">
         <div className="Homepage-container__carousel">
           <div className="Homepage-container__button">
-
             {buttonHomepageMap?.map(button => (
               <Button
                 key={button.title}
@@ -61,15 +58,6 @@ export function HomePage() {
           <div className="Homepage-container__carousel-container">
             {' '}
             <Carousel movies={movies} />{' '}
-          </div>
-          <div className="Homepage-container__Watchlist-title">
-            {' '}
-            <h1> {t('homepage.titles.watchlist')} </h1>
-            <h3> {t('homepage.titles.list')} </h3>
-          </div>{' '}
-          <div className="Homepage-container__carousel-container">
-            {' '}
-            <Carousel movies={mockArrayData} />{' '}
           </div>
           {watchList !== null && watchList.length !== 0 ? (
             <>

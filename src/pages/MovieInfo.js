@@ -15,39 +15,35 @@ import { useEffect, useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
 
-
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const movie = mockArrayData[0];
-  const params = useParams().id;
   let movieState = useLocation()?.state;
   const history = useHistory();
-  const filterBtnArray = JSON.parse(getWatchlist());
+  let moviesInWatchlist = JSON.parse(getWatchlist());
   const t = useTranslation();
 
-  const data = filterBtnArray?.find(value => {
-    return value.id.toString() === params;
-  });
+  const findById = id => item => item.id === id;
+
+  const data = moviesInWatchlist?.find(findById(movieState.movie.id));
 
   const [buttonState, setButtonState] = useState(!!data);
 
-  const pushMovieWatchlist = () => {
-    const watchlistArray = getWatchlist();
-    let parsedWatchlist = JSON.parse(watchlistArray);
-    const findMovie = parsedWatchlist.find(movies => {
-      return movies.id === movieState.movie.id;
-    });
+  const deleteMovieFromWatchlist = () => {
+    const findMovie = moviesInWatchlist.find(findById(movieState.movie.id));
+
     if (findMovie !== undefined && Object.keys(findMovie).length !== 0) {
-      const filterMovies = parsedWatchlist.filter(movies => movies.id !== findMovie.id);
+      const filterMovies = moviesInWatchlist.filter(movies => movies.id !== findMovie.id);
       setButtonState(false);
       setWatchlist(filterMovies);
-      return;
-    } else {
-      parsedWatchlist = [...parsedWatchlist, movieState.movie];
-      setButtonState(true);
-      setWatchlist(parsedWatchlist);
     }
+  };
+
+  const addMovieToWachlist = () => {
+    moviesInWatchlist = [...moviesInWatchlist, movieState.movie];
+    setButtonState(true);
+    setWatchlist(moviesInWatchlist);
   };
 
   const goBack = () => {
@@ -65,7 +61,7 @@ export function MovieInfo() {
     <div className="MovieInfo-container">
       <div className="MovieInfo__fullContainer">
         <div className="MovieInfo__info-container ">
-          <Button customClass="MovieInfo__btn-back" handleClick={() => goBack()}>
+          <Button customClass="MovieInfo__btn-back" handleClick={goBack}>
             <BiArrowBack size={20} />
           </Button>
           <div className="MovieInfo__data">
@@ -77,7 +73,7 @@ export function MovieInfo() {
                 <div className="MovieInfo__title">
                   <h2>{movie.title} </h2>
                   <Button
-                    handleClick={() => pushMovieWatchlist()}
+                    handleClick={data ? deleteMovieFromWatchlist : addMovieToWachlist}
                     img={
                       buttonState ? <BsFillBookmarkFill size={17} /> : <BsBookmarkPlus size={17} />
                     }
@@ -102,7 +98,7 @@ export function MovieInfo() {
                   <div className="MovieInfo-display__rating">
                     <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>
                     <h4 className="MovieInfo__ownRating">
-                      <AiOutlineStar size={25} /> Rate
+                      <AiOutlineStar size={25} /> {t('movieDetails.btn.rate')}
                     </h4>
                   </div>
                   <div className="MovieInfo-display__rating">
@@ -122,9 +118,15 @@ export function MovieInfo() {
         <h2> {t('movieDetails.images')} </h2>
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
-          {movie?.extraImgs.map((img, i) => {
+          {movie?.extraImgs.map((img, index) => {
             return (
-              <img aria-hidden="true" onClick={() => imageHandler(img)} src={img} alt={i} key={i} />
+              <img
+                aria-hidden="true"
+                onClick={() => imageHandler(img)}
+                src={img}
+                alt={index}
+                key={img}
+              />
             );
           })}{' '}
         </div>

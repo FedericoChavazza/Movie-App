@@ -1,4 +1,3 @@
-
 import endpoints from 'constants/endpoints';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
@@ -16,6 +15,7 @@ export const api = createApi({
         url: `${endpoints.movieDetail}/${id}${endpoints.imageDetail}?api_key=${process.env.REACT_APP_API_KEY}`,
         method: 'GET',
       }),
+    }),
     movieFetch: builder.query({
       query: endpoint => {
         return { url: `${endpoint}?api_key=${process.env.REACT_APP_API_KEY}`, method: 'GET' };
@@ -24,8 +24,4 @@ export const api = createApi({
   }),
 });
 
-export const {
-  useMovieDetailQuery,
-  useImageMovieDetailQuery,
-  useLazyMovieFetchQuery
-} = api;
+export const { useMovieDetailQuery, useImageMovieDetailQuery, useLazyMovieFetchQuery } = api;

@@ -2,7 +2,6 @@ import { Carousel } from 'components/logicComponents/Carousel';
 import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
-
 import { useState, useEffect } from 'react';
 import { useLazyMovieFetchQuery } from 'services/api';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';

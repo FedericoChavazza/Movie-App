@@ -9,7 +9,7 @@ import routesPaths from 'routes/routesPaths';
 
 export function WatchList() {
   const history = useHistory();
-  const watchList = JSON.parse(getWatchlist());
+  const watchList = getWatchlist();
   return (
     <div>
       {' '}

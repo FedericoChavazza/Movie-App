@@ -5,8 +5,9 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
-  margin-top: 2rem;
+  max-width: 126rem;
+  margin: 0 auto;
+  padding-top: 2rem;
   gap: 2rem;
   a {
     text-decoration: none;
@@ -35,7 +36,6 @@
   width: 100%;
   grid-column: 1/-1;
   display: flex;
-  justify-content: center;
   align-items: center;
   button {
     height: 5rem;
@@ -44,8 +44,10 @@
     border: none;
     background-color: #2f80ed;
     cursor: pointer;
-    margin: 1rem 5rem 2rem 8rem;
     transition: 1s all ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   button:hover {
     background-color: $colorLightBlue;

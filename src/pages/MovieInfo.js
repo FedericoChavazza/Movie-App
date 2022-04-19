@@ -2,14 +2,16 @@ import Button from 'components/common/Button';
 import { mockArrayData } from 'mock/mockData';
 import './styles.scss';
 import { AiOutlineStar } from 'react-icons/ai';
-import { BsFillBookmarkFill } from 'react-icons/bs';
+import { BsBookmarkPlus } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import Modal from 'components/modalComponent/Modal';
+import { setWatchlist, getWatchlist } from 'utils/api';
+import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
+import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
@@ -20,14 +22,34 @@ export function MovieInfo() {
   const [imageInArray, setImageInArray] = useState('');
   const movie = mockArrayData[0];
   const paramId = useParams().id;
-
   const { data: movieData } = useMovieDetailQuery(paramId);
-
   const { data: imageData } = useImageMovieDetailQuery(paramId);
-
+  let movieState = useLocation()?.state;
   const history = useHistory();
-
+  let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
+
+  const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
+
+  const data = findMovieInWatchlist(movieState.movie.id);
+
+  const [buttonState, setButtonState] = useState(!!data);
+
+  const deleteMovieFromWatchlist = () => {
+    const findMovie = findMovieInWatchlist(movieState.movie.id);
+
+    if (findMovie !== undefined && Object.keys(findMovie).length !== 0) {
+      const filterMovies = moviesInWatchlist.filter(movies => movies.id !== findMovie.id);
+      setButtonState(false);
+      setWatchlist(filterMovies);
+    }
+  };
+
+  const addMovieToWachlist = () => {
+    moviesInWatchlist = [...moviesInWatchlist, movieState.movie];
+    setButtonState(true);
+    setWatchlist(moviesInWatchlist);
+  };
 
   const goBack = () => {
     history.push(routesPaths.home);
@@ -62,7 +84,14 @@ export function MovieInfo() {
               <div className="MovieInfo__title">
                 {' '}
                 <h2>{movieData?.original_title} </h2>{' '}
-                <Button img={<BsFillBookmarkFill />}> {t('movieDetails.btn.add')} </Button>
+                <Button
+                  handleClick={data ? deleteMovieFromWatchlist : addMovieToWachlist}
+                  img={
+                    buttonState ? <BsFillBookmarkFill size={17} /> : <BsBookmarkPlus size={17} />
+                  }
+                >
+                  {t('movieDetails.btn.add')}
+                </Button>
               </div>
               <p> {movieData?.overview} </p>
               <div className="MovieInfo__genres">

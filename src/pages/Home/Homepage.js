@@ -18,7 +18,7 @@ export function HomePage() {
   const [movies, setMovies] = useState([]);
   const [trigger, moviesData] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
-  const watchList = JSON.parse(getWatchlist());
+  const watchList = getWatchlist();
 
   useEffect(() => {
     (async () => {
@@ -59,7 +59,7 @@ export function HomePage() {
             {' '}
             <Carousel movies={movies} />{' '}
           </div>
-          {watchList !== null && watchList.length !== 0 ? (
+          {!!watchList.length ? (
             <>
               {' '}
               <div className="Homepage-container__Watchlist-title">

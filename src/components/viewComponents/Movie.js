@@ -2,7 +2,7 @@ import './styles.scss';
 import { getWatchlist } from 'utils/api';
 
 export function Movie({ title, date, img, icon, id }) {
-  const watchlist = JSON.parse(getWatchlist());
+  const watchlist = getWatchlist();
   return (
     <div className="Movie-container">
       {watchlist.map(value => {

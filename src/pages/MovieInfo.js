@@ -21,17 +21,17 @@ export function MovieInfo() {
   const movie = mockArrayData[0];
   let movieState = useLocation()?.state;
   const history = useHistory();
-  let moviesInWatchlist = JSON.parse(getWatchlist());
+  let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
 
-  const findById = id => item => item.id === id;
+  const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
 
-  const data = moviesInWatchlist?.find(findById(movieState.movie.id));
+  const data = findMovieInWatchlist(movieState.movie.id);
 
   const [buttonState, setButtonState] = useState(!!data);
 
   const deleteMovieFromWatchlist = () => {
-    const findMovie = moviesInWatchlist.find(findById(movieState.movie.id));
+    const findMovie = findMovieInWatchlist(movieState.movie.id);
 
     if (findMovie !== undefined && Object.keys(findMovie).length !== 0) {
       const filterMovies = moviesInWatchlist.filter(movies => movies.id !== findMovie.id);
@@ -83,8 +83,8 @@ export function MovieInfo() {
                 </div>
                 <p> {movie.description} </p>
                 <div className="MovieInfo__genres">
-                  {movie?.genres.map((genre, i) => {
-                    return <div key={i}> {genre} </div>;
+                  {movie.genres.map(genre => {
+                    return <div key={genre}> {genre} </div>;
                   })}
                 </div>
                 <div className="MovieInfo__rate">
@@ -118,7 +118,7 @@ export function MovieInfo() {
         <h2> {t('movieDetails.images')} </h2>
         <div ref={scrollRef} className="MovieInfo__extraImgs">
           {' '}
-          {movie?.extraImgs.map((img, index) => {
+          {movie.extraImgs.map((img, index) => {
             return (
               <img
                 aria-hidden="true"

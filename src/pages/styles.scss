@@ -4,13 +4,17 @@
   @include display_flex(center, center);
   flex-direction: column;
   height: 100vh;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .MovieInfo__data {
   @include display_flex(center, center);
-  height: 80%;
+}
+
+.MovieInfo__fullContainer {
   width: 70%;
+  height: auto;
 }
 
 .MovieInfo__img {
@@ -90,7 +94,7 @@
 }
 
 .MovieInfo-data___information p {
-  max-height: 30rem;
+  max-height: 20rem;
   overflow-y: auto;
 }
 
@@ -153,6 +157,30 @@
   margin-bottom: 1rem;
 }
 
-.Movie-carousel__container {
-  height: 40%;
+.MovieInfo__info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+
+  button {
+    transition: 1s all ease;
+  }
+
+  button:hover {
+    background-color: #58a2d4;
+    cursor: pointer;
+    transition: 1s all ease;
+  }
+
+  .MovieInfo__btn-back {
+    align-self: flex-start;
+    height: 5rem;
+    width: 7rem;
+    color: white;
+    border: none;
+    background-color: #2f80ed;
+    cursor: pointer;
+  }
 }

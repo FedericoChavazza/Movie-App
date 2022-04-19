@@ -2,13 +2,14 @@ import { Carousel } from 'components/logicComponents/Carousel';
 import './styles.scss';
 import useTranslation from 'hooks/useTranslation';
 import Button from 'components/common/Button';
-import { useState, useEffect, useMemo } from 'react';
+
+import { useState, useEffect } from 'react';
 import { useLazyMovieFetchQuery } from 'services/api';
-import { mockArrayData } from 'mock/mockData';
 import { buttonHomepageMap } from 'mappings/buttonHomepageMap';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStoreMovies } from 'state/slices/movieSlice';
 import endpoints from 'constants/endpoints.js';
+import { getWatchlist } from 'utils/api';
 
 export function HomePage() {
   const t = useTranslation();
@@ -17,6 +18,7 @@ export function HomePage() {
   const [movies, setMovies] = useState([]);
   const [trigger, moviesData] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
+  const watchList = getWatchlist();
 
   useEffect(() => {
     (async () => {
@@ -57,15 +59,20 @@ export function HomePage() {
             {' '}
             <Carousel movies={movies} />{' '}
           </div>
-          <div className="Homepage-container__Watchlist-title">
-            {' '}
-            <h1> {t('homepage.titles.watchlist')} </h1>
-            <h3> {t('homepage.titles.list')} </h3>
-          </div>{' '}
-          <div className="Homepage-container__carousel-container">
-            {' '}
-            <Carousel movies={mockArrayData} />{' '}
-          </div>
+          {!!watchList.length ? (
+            <>
+              {' '}
+              <div className="Homepage-container__Watchlist-title">
+                {' '}
+                <h1> {t('homepage.titles.watchlist')} </h1>
+                <h3> {t('homepage.titles.list')} </h3>
+              </div>{' '}
+              <div className="Homepage-container__carousel-container">
+                {' '}
+                <Carousel movies={watchList} />
+              </div>{' '}
+            </>
+          ) : null}
         </div>{' '}
       </div>
     </div>

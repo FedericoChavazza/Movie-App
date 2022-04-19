@@ -1,6 +1,8 @@
 import './styles.scss';
+import { getWatchlist } from 'utils/api';
 
-export function Movie({ title, date, img }) {
+export function Movie({ title, date, img, icon, id }) {
+  const watchlist = getWatchlist();
   return (
     <div className="Movie-container">
       {img ? (
@@ -12,6 +14,9 @@ export function Movie({ title, date, img }) {
       ) : (
         <div className="Movie-container--img-notfound"> </div>
       )}
+      {watchlist.map(value => {
+        return value.id === id && <div className="Movie__bookmark"> {icon} </div>;
+      })}
       <div className="Movie-container__details">
         <p className="Movie-container__title"> {title} </p>
         <div className="Movie-container__date"> {date} </div>

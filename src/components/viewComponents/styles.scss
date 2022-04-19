@@ -4,6 +4,7 @@
   cursor: pointer;
   height: 35rem;
   width: 20rem;
+  position: relative;
 }
 
 .Movie-container__img {
@@ -59,4 +60,14 @@
 .Movie-container__date {
   align-self: flex-start;
   font-size: 1.4rem;
+}
+
+.Movie__bookmark {
+  position: absolute;
+  right: 10px;
+  background-color: #00000080;
+  padding: 10px 3px 10px 3px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
 }

@@ -3,14 +3,28 @@
 .MovieInfo-container {
   @include display_flex(center, center);
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  width: 56%;
+  margin: 0 auto;
+}
+
+.MovieInfo-data__holeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .MovieInfo__data {
   @include display_flex(center, center);
   height: 80%;
+  width: 100%;
+}
+
+.MovieInfo__fullContainer {
   width: 70%;
+  height: auto;
 }
 
 .MovieInfo__img {
@@ -22,6 +36,7 @@
 .MovieInfo__title {
   @include display_flex(space-between, center);
   width: 100%;
+  font-size: 1.6rem;
 }
 
 .MovieInfo-data__container {
@@ -42,6 +57,7 @@
     border-radius: 2rem;
     margin: 1rem;
     font-weight: 600;
+    font-size: 1.4rem;
   }
 }
 
@@ -68,6 +84,7 @@
 
   h4 {
     margin-top: 1rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -90,7 +107,8 @@
 }
 
 .MovieInfo-data___information p {
-  max-height: 30rem;
+  max-height: 15rem;
+  font-size: 1.3rem;
   overflow-y: auto;
 }
 
@@ -155,4 +173,49 @@
 
 .Movie-carousel__container {
   height: 40%;
+  width: 100%;
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+.MovieInfo__btn {
+  align-self: flex-start;
+  padding: 8px 1.5rem 8px 1.5rem;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 1s all ease;
+}
+
+.MovieInfo__btn:hover {
+  background-color: #58a2d4;
+  cursor: pointer;
+  transition: 1s all ease;
+  .MovieInfo__info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+  }
+  button {
+    transition: 1s all ease;
+  }
+
+  button:hover {
+    background-color: #58a2d4;
+    cursor: pointer;
+    transition: 1s all ease;
+  }
+}
+.MovieInfo__btn-back {
+  align-self: flex-start;
+  height: 5rem;
+  width: 7rem;
+  color: white;
+  border: none;
+  background-color: #2f80ed;
+  cursor: pointer;
 }

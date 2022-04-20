@@ -13,6 +13,7 @@ export function WatchList() {
   return (
     <div>
       {' '}
+      <div className="Homepage-container__header"></div>{' '}
       <div className="Watchlist__container">
         <div className="Watchlist__btn">
           <Button
@@ -21,7 +22,7 @@ export function WatchList() {
             img={<AiOutlineHome size={25} />}
           ></Button>
         </div>
-        {watchList?.map(movie => {
+        {watchList.map(movie => {
           return (
             <Link
               to={{

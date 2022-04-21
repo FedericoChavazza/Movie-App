@@ -163,13 +163,7 @@ export function MovieInfo() {
                       </ClickOutside>
                     )}
                     {ratingState ? (
-                      <div
-                        onKeyDown={() => setOpenTooltipRate(!openTooltipRate)}
-                        role="button"
-                        tabIndex="0"
-                        onClick={() => setOpenTooltipRate(!openTooltipRate)}
-                        className="MovieInfo_ratingInfo"
-                      >
+                      <div role="button" tabIndex="0" className="MovieInfo_ratingInfo">
                         <AiFillStar size={25} />
                         <span className="MovieInfo_ratingValue">
                           {' '}

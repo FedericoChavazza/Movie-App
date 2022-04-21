@@ -220,3 +220,15 @@ input:checked ~ label:hover ~ label,
 label:hover ~ input:checked ~ label {
   color: #a6e72d;
 }
+
+.MovieInfo_ratingValue {
+  position: absolute;
+  color: white;
+  cursor: pointer;
+}
+.MovieInfo_ratingInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}

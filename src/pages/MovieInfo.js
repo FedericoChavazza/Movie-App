@@ -7,7 +7,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
 import Modal from 'components/modalComponent/Modal';
 import { useState } from 'react';
@@ -15,16 +15,27 @@ import { Slider } from 'components/viewComponents/Slider';
 import { IoReturnUpBackOutline } from 'react-icons/io5';
 import { rating } from 'mappings/rateMovieInfoMap';
 import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
+import { useMovieRateMutation, useGetUserRatedMoviesQuery } from 'services/api';
+import { getGuestSession } from 'utils/api';
+import { useEffect } from 'react';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [openTooltipRate, setOpenTooltipRate] = useState(false);
   const movie = mockArrayData[0];
-
+  const movieId = parseInt(useParams().id);
+  const [movieRate] = useMovieRateMutation();
+  const { data, refetch } = useGetUserRatedMoviesQuery();
+  const session = getGuestSession();
   const history = useHistory();
-
   const t = useTranslation();
+  const [ratingState, setRatingState] = useState('');
+
+  useEffect(() => {
+    const ratedMovie = data?.results.find(movies => movies.id === movieId);
+    setRatingState(ratedMovie?.rating);
+  }, [data]);
 
   const goBack = () => {
     history.push(routesPaths.home);
@@ -37,9 +48,21 @@ export function MovieInfo() {
     setOpenModalState(true);
   };
 
+  const ratingMovie = rate => {
+    const ratingInfo = {
+      movieId,
+      rate,
+      session,
+    };
+
+    movieRate(ratingInfo)
+      .unwrap()
+      .then(() => refetch(), setRatingState(rate));
+  };
+
   return (
     <div className="MovieInfo-container">
-      <Button handleClick={() => goBack()}>
+      <Button handleClick={goBack}>
         <IoReturnUpBackOutline size={20} />
       </Button>
       <div className="MovieInfo__data">
@@ -76,7 +99,11 @@ export function MovieInfo() {
                           {rating.map(rates => {
                             return (
                               <>
-                                <input {...rates.input}></input> <label {...rates.label}> </label>
+                                <input
+                                  onClick={() => ratingMovie(rates.input.value)}
+                                  {...rates.input}
+                                ></input>{' '}
+                                <label {...rates.label}> </label>
                               </>
                             );
                           })}
@@ -84,7 +111,27 @@ export function MovieInfo() {
                       </div>
                     </ClickOutside>
                   )}
-                  <AiOutlineStar onClick={() => setOpenTooltipRate(!openTooltipRate)} size={25} />{' '}
+                  {ratingState ? (
+                    <div
+                      onKeyDown={() => setOpenTooltipRate(!openTooltipRate)}
+                      role="button"
+                      tabIndex="0"
+                      onClick={() => setOpenTooltipRate(!openTooltipRate)}
+                      className="MovieInfo_ratingInfo"
+                    >
+                      <AiFillStar size={25} />
+                      <span className="MovieInfo_ratingValue"> {ratingState && ratingState} </span>
+                    </div>
+                  ) : (
+                    <div
+                      onKeyDown={() => setOpenTooltipRate(!openTooltipRate)}
+                      role="button"
+                      tabIndex="0"
+                      onClick={() => setOpenTooltipRate(!openTooltipRate)}
+                    >
+                      <AiOutlineStar size={25} />
+                    </div>
+                  )}
                   Rate{' '}
                 </h4>
               </div>

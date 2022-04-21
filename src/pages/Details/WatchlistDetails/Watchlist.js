@@ -11,10 +11,10 @@ export function WatchList() {
   const history = useHistory();
   const watchList = getWatchlist();
   return (
-    <div>
+    <div className="Watchlis__container">
       {' '}
       <div className="Homepage-container__header"></div>{' '}
-      <div className="Watchlist__container">
+      <div className="Watchlist-info__container">
         <div className="Watchlist__btn">
           <Button
             handleClick={() => history.push(routesPaths.home)}

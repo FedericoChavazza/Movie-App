@@ -8,7 +8,6 @@ import routes from 'routes';
 import 'styles/styles.scss';
 import 'styles/variables.scss';
 
-
 function App() {
   const t = useTranslation();
 

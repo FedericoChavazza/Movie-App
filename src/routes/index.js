@@ -12,13 +12,11 @@ const routes = [
     path: routesPaths.home,
     component: <HomePage />,
     exact: true,
-
   },
   {
     path: routesPaths.watchlistInfo,
     component: <WatchList />,
     exact: true,
-   
   },
 ];
 

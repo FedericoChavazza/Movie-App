@@ -1,12 +1,17 @@
 @import '../../../styles/variables.scss';
 
+.Watchlist__container {
+  width: 100%;
+  height: 100vh;
+}
+
 .Homepage-container__header {
   width: 100%;
   height: 8%;
   background-color: rgb(111, 119, 128);
 }
 
-.Watchlist__container {
+.Watchlist-info__container {
   width: 100%;
   height: 92%;
   display: grid;

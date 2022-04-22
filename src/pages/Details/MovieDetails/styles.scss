@@ -176,6 +176,14 @@
   margin-bottom: 1rem;
 }
 
+.MovieInfo__info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+}
+
 .Movie-carousel__container {
   height: 40%;
   width: 100%;

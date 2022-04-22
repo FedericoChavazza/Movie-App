@@ -41,7 +41,7 @@ export function MovieInfo() {
   const [buttonState, setButtonState] = useState(!!findedMovie);
 
   const deleteMovieFromWatchlist = () => {
-    const findMovie = findMovieInWatchlist(movieState.movie.id);
+    const findMovie = findMovieInWatchlist(movieState?.movie.id);
 
     if (findMovie !== undefined && Object.keys(findMovie).length !== 0) {
       const filterMovies = moviesInWatchlist.filter(movies => movies.id !== findMovie.id);

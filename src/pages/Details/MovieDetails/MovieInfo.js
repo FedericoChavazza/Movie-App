@@ -16,7 +16,6 @@ import { Slider } from 'components/viewComponents/Slider';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
 
-
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
@@ -32,12 +31,12 @@ export function MovieInfo() {
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
 
-  const data = findMovieInWatchlist(movieState.movie.id);
+  const data = findMovieInWatchlist(movieState?.movie.id);
 
   const [buttonState, setButtonState] = useState(!!data);
 
   const deleteMovieFromWatchlist = () => {
-    const findMovie = findMovieInWatchlist(movieState.movie.id);
+    const findMovie = findMovieInWatchlist(movieState?.movie.id);
 
     if (findMovie !== undefined && Object.keys(findMovie).length !== 0) {
       const filterMovies = moviesInWatchlist.filter(movies => movies.id !== findMovie.id);
@@ -116,7 +115,7 @@ export function MovieInfo() {
                   <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>
                   <h4 className="MovieInfo__ownRating">
                     {' '}
-                    <AiOutlineStar size={25} /> Rate{' '}
+                    <AiOutlineStar size={25} /> {t('movieDetails.btn.rate')}{' '}
                   </h4>
                 </div>
                 <div className="MovieInfo-display__rating">

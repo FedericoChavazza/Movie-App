@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 .MovieInfo-container {
   @include display_flex(center, center);
@@ -169,6 +169,14 @@
 
 .MovieInfo-display__rating h4:nth-child(1) {
   margin-bottom: 1rem;
+}
+
+.MovieInfo__info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
 }
 
 .Movie-carousel__container {

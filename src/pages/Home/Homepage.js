@@ -9,6 +9,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStoreMovies } from 'state/slices/movieSlice';
 import endpoints from 'constants/endpoints.js';
 import { getWatchlist } from 'utils/api';
+import { useHistory } from 'react-router-dom';
+import routesPaths from 'routes/routesPaths';
 
 export function HomePage() {
   const t = useTranslation();
@@ -19,6 +21,7 @@ export function HomePage() {
 
   const dispatch = useDispatch();
   const watchList = getWatchlist();
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -65,7 +68,10 @@ export function HomePage() {
               <div className="Homepage-container__Watchlist-title">
                 {' '}
                 <h1> {t('homepage.titles.watchlist')} </h1>
-                <h3> {t('homepage.titles.list')} </h3>
+                <h3 aria-hidden="true" onClick={() => history.push(routesPaths.watchlistInfo)}>
+                  {' '}
+                  {t('homepage.titles.list')}{' '}
+                </h3>
               </div>{' '}
               <div className="Homepage-container__carousel-container">
                 {' '}

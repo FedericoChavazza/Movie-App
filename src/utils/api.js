@@ -1,4 +1,4 @@
-import { GUEST_SESSION, WATCHLIST } from 'constants/constants';
+import { WATCHLIST } from 'constants/constants';
 
 export const setWatchlist = array => {
   return localStorage.setItem(WATCHLIST, JSON.stringify(array));

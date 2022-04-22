@@ -9,16 +9,13 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { setWatchlist, getWatchlist, setGuestSession } from 'utils/api';
+import { setWatchlist, getWatchlist } from 'utils/api';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
 import { rating } from 'mappings/rateMovieInfoMap';
 import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
-import { useMovieRateMutation, useGetUserRatedMoviesQuery } from 'services/api';
-import { getGuestSession } from 'utils/api';
-import { useEffect } from 'react';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
 
@@ -28,9 +25,6 @@ export function MovieInfo() {
   const [openTooltipRate, setOpenTooltipRate] = useState(false);
   const movie = mockArrayData[0];
   const movieId = parseInt(useParams().id);
-  const [movieRate] = useMovieRateMutation();
-  const { data, refetch } = useGetUserRatedMoviesQuery();
-  const session = getGuestSession();
   const history = useHistory();
   const [imageInArray, setImageInArray] = useState('');
   const { data: movieData } = useMovieDetailQuery(movieId);
@@ -39,11 +33,6 @@ export function MovieInfo() {
   let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
   const [ratingState, setRatingState] = useState('');
-
-  useEffect(() => {
-    const ratedMovie = data?.results.find(movies => movies.id === movieId);
-    setRatingState(ratedMovie?.rating);
-  }, [data]);
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
 
@@ -78,19 +67,6 @@ export function MovieInfo() {
     setImageInArray(img);
     setSelectedImage(imageUrl);
     setOpenModalState(true);
-  };
-
-  const ratingMovie = rate => {
-    const ratingInfo = {
-      movieId,
-      rate,
-      session,
-    };
-
-    movieRate(ratingInfo)
-      .unwrap()
-      .then(() => refetch(), setRatingState(rate))
-      .catch(() => setGuestSession(session));
   };
 
   return (
@@ -151,7 +127,7 @@ export function MovieInfo() {
                               return (
                                 <>
                                   <input
-                                    onClick={() => ratingMovie(rates.input.value)}
+                                    onClick={() => setRatingState(rates.input.value)}
                                     {...rates.input}
                                   ></input>{' '}
                                   <label {...rates.label}> </label>

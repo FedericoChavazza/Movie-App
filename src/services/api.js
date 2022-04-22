@@ -32,12 +32,26 @@ export const api = createApi({
         };
       },
     }),
+    guestSessionId: builder.query({
+      query: () => ({
+        url: `${endpoints.authentication_guest_session}?api_key=${process.env.REACT_APP_API_KEY}`,
+        method: 'GET',
+      }),
+    }),
+    getUserRatedMovies: builder.query({
+      query: () => ({
+        url: `${endpoints.guest_session}/${session}${endpoints.ratedMovies}?api_key=${process.env.REACT_APP_API_KEY}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
 export const {
-  useLazyMovieFetchQuery,
-  useMovieRateMutation,
   useMovieDetailQuery,
   useImageMovieDetailQuery,
+  useLazyMovieFetchQuery,
+  useMovieRateMutation,
+  useGuestSessionIdQuery,
+  useGetUserRatedMoviesQuery,
 } = api;

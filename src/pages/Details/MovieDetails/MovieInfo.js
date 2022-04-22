@@ -9,7 +9,7 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { setWatchlist, getWatchlist } from 'utils/api';
+import { setWatchlist, getWatchlist, setGuestSession } from 'utils/api';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
@@ -18,13 +18,15 @@ import { rating } from 'mappings/rateMovieInfoMap';
 import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
+import { useMovieRateMutation, useGetUserRatedMoviesQuery } from 'services/api';
+import { getGuestSession } from 'utils/api';
+import { useEffect } from 'react';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [openTooltipRate, setOpenTooltipRate] = useState(false);
   const movie = mockArrayData[0];
-  const movieId = parseInt(useParams().id);
   const history = useHistory();
   const [imageInArray, setImageInArray] = useState('');
   const { data: movieData } = useMovieDetailQuery(movieId);
@@ -33,8 +35,19 @@ export function MovieInfo() {
   let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
   const [ratingState, setRatingState] = useState('');
+  const movieId = parseInt(useParams().id);
+  const [movieRate] = useMovieRateMutation();
+  const { data, refetch } = useGetUserRatedMoviesQuery();
+  const session = getGuestSession();
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
+
+  const [ratingState, setRatingState] = useState('');
+
+  useEffect(() => {
+    const ratedMovie = data?.results.find(movies => movies.id === movieId);
+    setRatingState(ratedMovie?.rating);
+  }, [data]);
 
   const findedMovie = findMovieInWatchlist(movieState.movie.id);
 
@@ -67,6 +80,19 @@ export function MovieInfo() {
     setImageInArray(img);
     setSelectedImage(imageUrl);
     setOpenModalState(true);
+  };
+
+  const handleRating = rate => {
+    const ratingInfo = {
+      movieId,
+      rate,
+      session,
+    };
+
+    movieRate(ratingInfo)
+      .unwrap()
+      .then(() => refetch(), setRatingState(rate))
+      .catch(() => setGuestSession(session));
   };
 
   return (
@@ -127,7 +153,7 @@ export function MovieInfo() {
                               return (
                                 <>
                                   <input
-                                    onClick={() => setRatingState(rates.input.value)}
+                                    onClick={() => handleRating(rates.input.value)}
                                     {...rates.input}
                                   ></input>{' '}
                                   <label {...rates.label}> </label>

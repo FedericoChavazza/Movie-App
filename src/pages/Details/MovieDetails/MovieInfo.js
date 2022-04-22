@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import Button from 'components/common/Button';
 import { mockArrayData } from 'mock/mockData';
 import './styles.scss';
@@ -41,8 +40,6 @@ export function MovieInfo() {
   const session = getGuestSession();
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
-
-  const [ratingState, setRatingState] = useState('');
 
   useEffect(() => {
     const ratedMovie = data?.results.find(movies => movies.id === movieId);

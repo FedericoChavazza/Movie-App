@@ -4,6 +4,7 @@ const endpoints = {
   top_rated: '/movie/top_rated',
   movieDetail: '/movie',
   imageDetail: '/images',
+  authentication_guest_session: '/authentication/guest_session/new',
 };
 
 export default endpoints;

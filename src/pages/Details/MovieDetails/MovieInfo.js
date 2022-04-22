@@ -13,6 +13,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
+
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
 

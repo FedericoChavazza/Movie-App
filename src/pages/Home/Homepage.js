@@ -17,7 +17,8 @@ export function HomePage() {
   const cachingCategory = useSelector(state => state.movies.moviesData);
   const [buttonValue, setButtonValue] = useState('discover');
   const [movies, setMovies] = useState([]);
-  const [trigger] = useLazyMovieFetchQuery();
+  const [trigger, { isLoading }] = useLazyMovieFetchQuery();
+
   const dispatch = useDispatch();
   const watchList = getWatchlist();
   const history = useHistory();
@@ -59,7 +60,7 @@ export function HomePage() {
           </div>
           <div className="Homepage-container__carousel-container">
             {' '}
-            <Carousel movies={movies} />{' '}
+            <Carousel isLoading={isLoading} movies={movies} />{' '}
           </div>
           {!!watchList.length ? (
             <>

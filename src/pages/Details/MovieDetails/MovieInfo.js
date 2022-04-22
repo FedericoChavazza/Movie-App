@@ -167,10 +167,7 @@ export function MovieInfo() {
                     {ratingState ? (
                       <div role="button" tabIndex="0" className="MovieInfo_ratingInfo">
                         <AiFillStar size={25} />
-                        <span className="MovieInfo_ratingValue">
-                          {' '}
-                          {ratingState && ratingState}{' '}
-                        </span>
+                        <span className="MovieInfo_ratingValue"> {ratingState} </span>
                       </div>
                     ) : (
                       <div

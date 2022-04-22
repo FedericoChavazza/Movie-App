@@ -21,7 +21,18 @@ export const api = createApi({
         return { url: `${endpoint}?api_key=${process.env.REACT_APP_API_KEY}`, method: 'GET' };
       },
     }),
+    guestSessionId: builder.query({
+      query: () => ({
+        url: `${endpoints.authentication_guest_session}?api_key=${process.env.REACT_APP_API_KEY}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
-export const { useMovieDetailQuery, useImageMovieDetailQuery, useLazyMovieFetchQuery } = api;
+export const {
+  useMovieDetailQuery,
+  useImageMovieDetailQuery,
+  useLazyMovieFetchQuery,
+  useGuestSessionIdQuery,
+} = api;

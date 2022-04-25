@@ -9,6 +9,7 @@ import 'styles/styles.scss';
 import 'styles/variables.scss';
 import { useGuestSessionIdQuery } from 'services/api';
 import { setGuestSession, getGuestSession } from 'utils/api';
+import { useEffect } from 'react';
 
 function App() {
   const t = useTranslation();

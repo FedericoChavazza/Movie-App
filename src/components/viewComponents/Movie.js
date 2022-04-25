@@ -8,9 +8,6 @@ import { useState } from 'react';
 export function Movie({ title, date, img, icon, id, language }) {
   const watchlist = getWatchlist();
   const [loaded, setLoaded] = useState(false);
-
-  console.log(loaded, 'soy los loading');
-
   return (
     <div className="Movie-container">
       {watchlist.map(value => {

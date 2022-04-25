@@ -15,31 +15,6 @@
   object-fit: cover;
 }
 
-.Movie-container--img-loading {
-  height: 27rem;
-  width: auto;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
-  display: block;
-  animation-duration: 6s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: placeHolder;
-  animation-timing-function: linear;
-  background-color: #f6f7f8;
-  background: linear-gradient(to bottom, #ebebeb 20%, #dddddd 50%, #ebebeb 80%);
-  position: relative;
-}
-
-@keyframes placeHolder {
-  0% {
-    background-position: 0px 800px;
-  }
-  100% {
-    background-position: 0 -800px;
-  }
-}
-
 .Movie-container__details {
   display: flex;
   justify-content: center;

@@ -15,7 +15,7 @@
   object-fit: cover;
 }
 
-.Movie-container--img-notfound {
+.Movie-container--img-loading {
   height: 27rem;
   width: auto;
   border-top-left-radius: 1rem;
@@ -92,4 +92,12 @@
     color: rgb(68, 73, 78);
     font-weight: 400;
   }
+}
+
+.Movie-container--img-notfound {
+  height: 27rem;
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: #e9e8e8;
 }

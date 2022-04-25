@@ -1,5 +1,6 @@
 import './styles.scss';
 import { getWatchlist } from 'utils/api';
+import BROKEN_IMG from 'imgs/broken-img.png';
 
 export function Movie({ title, date, img, icon, id, language }) {
   const watchlist = getWatchlist();
@@ -12,10 +13,10 @@ export function Movie({ title, date, img, icon, id, language }) {
         <img
           className="Movie-container__img"
           src={`${process.env.REACT_APP_ORIGINAL_IMG}${img}`}
-          alt="movie"
+          alt=""
         />
       ) : (
-        <div className="Movie-container--img-notfound"> </div>
+        <img src={BROKEN_IMG} alt="" className="Movie-container--img-notfound" />
       )}
       <div className="Movie-container__details">
         <p className="Movie-container__title"> {title} </p>

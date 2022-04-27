@@ -13,6 +13,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
+import { useImdbRatingQuery } from 'services/imdbApi';
 
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
@@ -29,6 +30,7 @@ export function MovieInfo() {
   const history = useHistory();
   let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
+  const { data: imdbRatings } = useImdbRatingQuery(movieData?.imdb_id);
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
 
@@ -94,7 +96,7 @@ export function MovieInfo() {
                   {t('movieDetails.btn.add')}
                 </Button>
               </div>
-              <p> {movieData?.overview} </p>
+              <p> {imdbRatings?.plot || movieData?.overview} </p>
               <div className="MovieInfo__genres">
                 {' '}
                 {movieData?.genres.map((genre, i) => {
@@ -108,9 +110,12 @@ export function MovieInfo() {
                   <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.imdb')}</h4>{' '}
                   <h4 className="MovieInfo__ratingStar">
                     {' '}
-                    <AiFillStar size={25} /> {`${movie.imdbRating} /10`}{' '}
+                    <AiFillStar size={25} />
+                    {`${imdbRatings?.imDbRating || t('movieDetails.loading')} /10`}{' '}
                   </h4>
-                  <h5>{movie.allRates} </h5>
+                  <h5>
+                    {imdbRatings?.imDbRatingVotes?.slice(0, 2) || t('movieDetails.loading')}k{' '}
+                  </h5>
                 </div>
                 <div className="MovieInfo-display__rating">
                   <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>

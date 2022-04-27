@@ -96,7 +96,7 @@ export function MovieInfo() {
                   {t('movieDetails.btn.add')}
                 </Button>
               </div>
-              <p> {imdbRatings?.plot || movieData?.overview} </p>
+              <p> {imdbRatings?.plot} </p>
               <div className="MovieInfo__genres">
                 {' '}
                 {movieData?.genres.map((genre, i) => {

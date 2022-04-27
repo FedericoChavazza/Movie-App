@@ -4,14 +4,40 @@
   cursor: pointer;
   height: 35rem;
   width: 20rem;
+  position: relative;
 }
 
 .Movie-container__img {
   height: 27rem;
-  width: 20rem;
+  width: 100%;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   object-fit: cover;
+}
+
+.Movie-container--img-notfound {
+  height: 27rem;
+  width: auto;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: block;
+  animation-duration: 6s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolder;
+  animation-timing-function: linear;
+  background-color: #f6f7f8;
+  background: linear-gradient(to bottom, #ebebeb 20%, #dddddd 50%, #ebebeb 80%);
+  position: relative;
+}
+
+@keyframes placeHolder {
+  0% {
+    background-position: 0px 800px;
+  }
+  100% {
+    background-position: 0 -800px;
+  }
 }
 
 .Movie-container__details {
@@ -34,4 +60,36 @@
 .Movie-container__date {
   align-self: flex-start;
   font-size: 1.4rem;
+}
+
+.Movie__bookmark {
+  position: absolute;
+  right: 10px;
+  background-color: #00000080;
+  padding: 10px 3px 10px 3px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  color: white;
+}
+
+.Movie-container__language {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: flex-start;
+  gap: 1rem;
+  div {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    background: #6f7780;
+    border-radius: 5rem;
+    color: white;
+  }
+  h4 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgb(68, 73, 78);
+    font-weight: 400;
+  }
 }

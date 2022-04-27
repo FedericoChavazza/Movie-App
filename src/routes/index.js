@@ -1,6 +1,7 @@
 import routesPaths from './routesPaths';
-import { MovieInfo } from 'pages/MovieInfo';
+import { MovieInfo } from 'pages/Details/MovieDetails/MovieInfo';
 import { HomePage } from 'pages/Home/Homepage';
+import { WatchList } from 'pages/Details/WatchlistDetails/Watchlist';
 
 const routes = [
   {
@@ -10,6 +11,11 @@ const routes = [
   {
     path: routesPaths.home,
     component: <HomePage />,
+    exact: true,
+  },
+  {
+    path: routesPaths.watchlistInfo,
+    component: <WatchList />,
     exact: true,
   },
 ];

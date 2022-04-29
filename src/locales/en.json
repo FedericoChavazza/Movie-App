@@ -25,6 +25,7 @@
       "user": "YOUR RATING",
       "general": "POPULARITY"
     },
-    "images": "Images"
+    "images": "Images",
+    "loading": "loading..."
   }
 }

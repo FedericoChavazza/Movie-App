@@ -23,6 +23,8 @@ export function HomePage() {
   const watchList = getWatchlist();
   const history = useHistory();
 
+  console.log(watchList);
+
   useEffect(() => {
     (async () => {
       if (!cachingCategory[buttonValue].loaded) {
@@ -77,7 +79,7 @@ export function HomePage() {
               </div>{' '}
               <div className="Homepage-container__carousel-container">
                 {' '}
-                <Carousel movies={watchList} />
+                <Carousel movies={watchList} loading={loader} />
               </div>{' '}
             </>
           ) : null}

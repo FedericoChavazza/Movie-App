@@ -18,7 +18,10 @@
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
+
 }
+
+
 
 .Movie-container__details {
   display: flex;
@@ -72,4 +75,12 @@
     color: rgb(68, 73, 78);
     font-weight: 400;
   }
+}
+
+.Movie-container--img-notfound {
+  height: 27rem;
+  width: 100%;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: #e9e8e8;
 }

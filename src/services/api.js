@@ -1,5 +1,8 @@
 import endpoints from 'constants/endpoints';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getGuestSession } from 'utils/api';
+
+const session = getGuestSession();
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),

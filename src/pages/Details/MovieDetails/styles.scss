@@ -1,4 +1,5 @@
-@import '../../../styles/variables.scss';
+@import '../styles/variables.scss';
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 .MovieInfo-container {
   @include display_flex(center, center);
@@ -167,6 +168,10 @@
   }
 }
 
+.MovieInfo-display__rating {
+  position: relative;
+}
+
 .MovieInfo-display__rating h4:nth-child(1) {
   margin-bottom: 1rem;
 }
@@ -226,4 +231,81 @@
   border: none;
   background-color: #2f80ed;
   cursor: pointer;
+}
+
+.MovieInfo__onwRating-rate {
+  background: #1d1d1d;
+  height: 5rem;
+  width: 17rem;
+  position: absolute;
+  display: flex;
+  top: -5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.5rem;
+}
+
+.rate {
+  display: inline-block;
+  border: 0;
+}
+
+.rate > input {
+  display: none;
+}
+
+.rate > label {
+  float: right;
+}
+
+.rate > label:before {
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0.3rem 0.2rem;
+  margin: 0;
+  cursor: pointer;
+  font-family: FontAwesome;
+  content: '\f005 ';
+}
+
+.rate .half:before {
+  content: '\f089 ';
+  position: absolute;
+  padding-right: 0;
+}
+
+input:checked ~ label,
+label:hover,
+label:hover ~ label {
+  color: #73b100;
+}
+
+input:checked + label:hover,
+input:checked ~ label:hover,
+input:checked ~ label:hover ~ label,
+label:hover ~ input:checked ~ label {
+  color: #a6e72d;
+}
+
+.MovieInfo_ratingValue {
+  position: absolute;
+  color: white;
+  cursor: pointer;
+}
+.MovieInfo_ratingInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.Movieinfo_ratingTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

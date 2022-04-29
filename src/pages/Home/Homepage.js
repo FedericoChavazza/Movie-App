@@ -16,9 +16,9 @@ export function HomePage() {
   const t = useTranslation();
   const cachingCategory = useSelector(state => state.movies.moviesData);
   const [buttonValue, setButtonValue] = useState('discover');
+  const [loader, setLoader] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [trigger, { isLoading }] = useLazyMovieFetchQuery();
-
+  const [trigger] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
   const watchList = getWatchlist();
   const history = useHistory();
@@ -35,8 +35,10 @@ export function HomePage() {
           })
         );
       }
+
       setMovies(cachingCategory[buttonValue].data);
     })();
+    setLoader(cachingCategory[buttonValue]?.loaded);
   }, [buttonValue, cachingCategory, trigger, dispatch]);
 
   return (
@@ -60,7 +62,7 @@ export function HomePage() {
           </div>
           <div className="Homepage-container__carousel-container">
             {' '}
-            <Carousel isLoading={isLoading} movies={movies} />{' '}
+            <Carousel loading={loader} movies={movies} />{' '}
           </div>
           {!!watchList.length ? (
             <>

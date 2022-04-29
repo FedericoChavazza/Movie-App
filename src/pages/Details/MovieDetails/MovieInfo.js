@@ -8,33 +8,50 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import useTranslation from 'hooks/useTranslation';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { setWatchlist, getWatchlist } from 'utils/api';
+import { setWatchlist, getWatchlist, setGuestSession } from 'utils/api';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
-
+import { useImdbRatingQuery } from 'services/imdbApi';
+import { rating } from 'mappings/rateMovieInfoMap';
+import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
 import { BiArrowBack } from 'react-icons/bi';
+import { useMovieRateMutation, useGetUserRatedMoviesQuery } from 'services/api';
+import { getGuestSession } from 'utils/api';
+import { useEffect } from 'react';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
-  const [imageInArray, setImageInArray] = useState('');
+  const [openTooltipRate, setOpenTooltipRate] = useState(false);
   const movie = mockArrayData[0];
-  const paramId = useParams().id;
-  const { data: movieData } = useMovieDetailQuery(paramId);
-  const { data: imageData } = useImageMovieDetailQuery(paramId);
-  let movieState = useLocation()?.state;
   const history = useHistory();
+  const [imageInArray, setImageInArray] = useState('');
+  const { data: movieData } = useMovieDetailQuery(movieId);
+  const { data: imageData } = useImageMovieDetailQuery(movieId);
+  let movieState = useLocation()?.state;
   let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
+  const { data: imdbRatings } = useImdbRatingQuery(movieData?.imdb_id);
+
+  const [ratingState, setRatingState] = useState('');
+  const movieId = parseInt(useParams().id);
+  const [movieRate] = useMovieRateMutation();
+  const { data, refetch } = useGetUserRatedMoviesQuery();
+  const session = getGuestSession();
 
   const findMovieInWatchlist = id => moviesInWatchlist.find(movie => movie.id === id);
 
-  const data = findMovieInWatchlist(movieState?.movie.id);
+  useEffect(() => {
+    const ratedMovie = data?.results.find(movies => movies.id === movieId);
+    setRatingState(ratedMovie?.rating);
+  }, [data]);
 
-  const [buttonState, setButtonState] = useState(!!data);
+  const findedMovie = findMovieInWatchlist(movieState.movie.id);
+
+  const [buttonState, setButtonState] = useState(!!findedMovie);
 
   const deleteMovieFromWatchlist = () => {
     const findMovie = findMovieInWatchlist(movieState?.movie.id);
@@ -65,6 +82,19 @@ export function MovieInfo() {
     setOpenModalState(true);
   };
 
+  const handleRating = rate => {
+    const ratingInfo = {
+      movieId,
+      rate,
+      session,
+    };
+
+    movieRate(ratingInfo)
+      .unwrap()
+      .then(() => refetch(), setRatingState(rate))
+      .catch(() => setGuestSession(session));
+  };
+
   return (
     <div className="MovieInfo-container">
       <div className="MovieInfo-data__holeContainer">
@@ -86,7 +116,7 @@ export function MovieInfo() {
                 {' '}
                 <h2>{movieData?.original_title} </h2>{' '}
                 <Button
-                  handleClick={data ? deleteMovieFromWatchlist : addMovieToWachlist}
+                  handleClick={findedMovie ? deleteMovieFromWatchlist : addMovieToWachlist}
                   img={
                     buttonState ? <BsFillBookmarkFill size={17} /> : <BsBookmarkPlus size={17} />
                   }
@@ -94,7 +124,7 @@ export function MovieInfo() {
                   {t('movieDetails.btn.add')}
                 </Button>
               </div>
-              <p> {movieData?.overview} </p>
+              <p> {imdbRatings?.plot} </p>
               <div className="MovieInfo__genres">
                 {' '}
                 {movieData?.genres.map((genre, i) => {
@@ -108,15 +138,52 @@ export function MovieInfo() {
                   <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.imdb')}</h4>{' '}
                   <h4 className="MovieInfo__ratingStar">
                     {' '}
-                    <AiFillStar size={25} /> {`${movie.imdbRating} /10`}{' '}
+                    <AiFillStar size={25} />
+                    {`${imdbRatings?.imDbRating || t('movieDetails.loading')} /10`}{' '}
                   </h4>
-                  <h5>{movie.allRates} </h5>
+                  <h5>
+                    {imdbRatings?.imDbRatingVotes?.slice(0, 2) || t('movieDetails.loading')}k{' '}
+                  </h5>
                 </div>
                 <div className="MovieInfo-display__rating">
                   <h4 className="MovieInfo-rating__title">{t('movieDetails.ratings.user')}</h4>
                   <h4 className="MovieInfo__ownRating">
-                    {' '}
-                    <AiOutlineStar size={25} /> {t('movieDetails.btn.rate')}{' '}
+                    {openTooltipRate && (
+                      <ClickOutside onClick={() => setOpenTooltipRate(false)}>
+                        <div className="MovieInfo__onwRating-rate">
+                          <fieldset className="rate">
+                            {rating.map(rates => {
+                              return (
+                                <>
+                                  <input
+                                    onClick={() => handleRating(rates.input.value)}
+                                    {...rates.input}
+                                  ></input>{' '}
+                                  <label {...rates.label}> </label>
+                                </>
+                              );
+                            })}
+                          </fieldset>
+                        </div>
+                      </ClickOutside>
+                    )}
+                    {ratingState ? (
+                      <div role="button" tabIndex="0" className="MovieInfo_ratingInfo">
+                        <AiFillStar size={25} />
+                        <span className="MovieInfo_ratingValue"> {ratingState} </span>
+                      </div>
+                    ) : (
+                      <div
+                        onKeyDown={() => setOpenTooltipRate(!openTooltipRate)}
+                        role="button"
+                        tabIndex="0"
+                        onClick={() => setOpenTooltipRate(!openTooltipRate)}
+                        className="Movieinfo_ratingTitle"
+                      >
+                        <AiOutlineStar size={25} />
+                        <span>{t('movieDetails.btn.rate')} </span>
+                      </div>
+                    )}
                   </h4>
                 </div>
                 <div className="MovieInfo-display__rating">

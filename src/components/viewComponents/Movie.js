@@ -1,20 +1,20 @@
 import './styles.scss';
 import { getWatchlist } from 'utils/api';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 import BROKEN_IMG from 'imgs/broken-img.png';
+
 
 export function Movie({ title, date, img, icon, id, language }) {
   const watchlist = getWatchlist();
+
   return (
     <div className="Movie-container">
       {watchlist.map(value => {
         return value.id === id && <div className="Movie__bookmark"> {icon} </div>;
       })}
       {img ? (
-        <img
-          className="Movie-container__img"
-          src={`${process.env.REACT_APP_ORIGINAL_IMG}${img}`}
-          alt=""
-        />
+        <LazyLoadImage alt="" effect="opacity" src={`${process.env.REACT_APP_ORIGINAL_IMG}${img}`} />
       ) : (
         <img src={BROKEN_IMG} alt="not-found" className="Movie-container--img-notfound" />
       )}

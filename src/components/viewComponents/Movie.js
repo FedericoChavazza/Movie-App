@@ -16,7 +16,7 @@ export function Movie({ title, date, img, icon, id, language }) {
           alt=""
         />
       ) : (
-        <img src={BROKEN_IMG} alt="" className="Movie-container--img-notfound" />
+        <img src={BROKEN_IMG} alt="not-found" className="Movie-container--img-notfound" />
       )}
       <div className="Movie-container__details">
         <p className="Movie-container__title"> {title} </p>

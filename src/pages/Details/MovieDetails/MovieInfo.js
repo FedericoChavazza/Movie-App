@@ -26,7 +26,7 @@ export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
   const [openTooltipRate, setOpenTooltipRate] = useState(false);
-  const movie = mockArrayData[0];
+  const movieId = parseInt(useParams().id);
   const history = useHistory();
   const [imageInArray, setImageInArray] = useState('');
   const { data: movieData } = useMovieDetailQuery(movieId);
@@ -37,7 +37,7 @@ export function MovieInfo() {
   const { data: imdbRatings } = useImdbRatingQuery(movieData?.imdb_id);
 
   const [ratingState, setRatingState] = useState('');
-  const movieId = parseInt(useParams().id);
+
   const [movieRate] = useMovieRateMutation();
   const { data, refetch } = useGetUserRatedMoviesQuery();
   const session = getGuestSession();
@@ -159,7 +159,9 @@ export function MovieInfo() {
                                     onClick={() => handleRating(rates.input.value)}
                                     {...rates.input}
                                   ></input>{' '}
-                                  <label {...rates.label}> </label>
+                                  <label htmlFor="ratings" {...rates.label}>
+                                    {' '}
+                                  </label>
                                 </>
                               );
                             })}

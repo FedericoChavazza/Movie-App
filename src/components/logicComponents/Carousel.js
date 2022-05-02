@@ -5,10 +5,12 @@ import { useHorizontalScroll } from 'hooks/useSideScroll';
 import LOADER from 'imgs/loader.gif';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 
-export function Carousel({ movies, loading }) {
+export function Carousel({ movies, loading, moviesToShow }) {
+  const movieWidth = 208 * moviesToShow;
+
   const scrollRef = useHorizontalScroll();
   return (
-    <div ref={scrollRef} className="Carousel-container">
+    <div ref={scrollRef} style={{ width: movieWidth }} className="Carousel-container">
       {loading && !!movies?.length ? (
         movies.map(movie => {
           return (

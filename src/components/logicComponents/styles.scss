@@ -2,9 +2,9 @@
 
 .Carousel-container {
   @include display_flex(flex-start, center);
-  width: 100%;
   overflow-x: scroll;
   gap: 1rem;
+  width: 100%;
   background-color: #f2f2f2;
   padding: 1rem 5px 1rem 5px;
   height: 36rem;
@@ -22,4 +22,16 @@
   width: 15rem;
   height: 15rem;
   margin: 0 auto;
+}
+
+.Watchlist__select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  color: black;
+  width: 55px;
+  height: 30px;
+  text-align: center;
+  border-radius: 10px;
 }

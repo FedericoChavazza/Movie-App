@@ -44,7 +44,7 @@ export const api = createApi({
     }),
     getUserRatedMovies: builder.query({
       query: () => ({
-        url: `${endpoints.guest_session}/${session}${endpoints.ratedMovies}?api_key=${process.env.REACT_APP_API_KEY}`,
+        url: `${endpoints.guest_session}/${session}/${endpoints.ratedMovies}?api_key=${process.env.REACT_APP_API_KEY}`,
         method: 'GET',
       }),
     }),

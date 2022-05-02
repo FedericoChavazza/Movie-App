@@ -328,3 +328,10 @@ label:hover ~ input:checked ~ label {
   justify-content: center;
   align-items: center;
 }
+
+.Movie-carousel--img-notfound {
+  height: 15rem;
+  width: 25rem;
+  object-fit: cover;
+  border-top: 1rem solid black;
+}

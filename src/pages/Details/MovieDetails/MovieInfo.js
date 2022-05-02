@@ -21,6 +21,8 @@ import { BiArrowBack } from 'react-icons/bi';
 import { useMovieRateMutation, useGetUserRatedMoviesQuery } from 'services/api';
 import { getGuestSession } from 'utils/api';
 import { useEffect } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 export function MovieInfo() {
   const [openModalState, setOpenModalState] = useState(false);
@@ -201,15 +203,17 @@ export function MovieInfo() {
           <h2> {t('movieDetails.images')} </h2>
           <div ref={scrollRef} className="MovieInfo__extraImgs">
             {' '}
-            {imageData?.backdrops.map((img, i) => {
+            {imageData?.backdrops.map(img => {
               return (
-                <img
-                  aria-hidden="true"
-                  onClick={() => imageHandler(img.file_path)}
-                  src={`${process.env.REACT_APP_ORIGINAL_IMG}${img.file_path}`}
-                  alt={i}
-                  key={i}
-                />
+                <div className="MovieInfo__images">
+                  <LazyLoadImage
+                    src={`${process.env.REACT_APP_ORIGINAL_IMG}${img.file_path}`}
+                    handleClick={() => imageHandler(img.file_path)}
+                    alt={img}
+                    key={img}
+                    effect="opacity"
+                  />
+                </div>
               );
             })}{' '}
           </div>

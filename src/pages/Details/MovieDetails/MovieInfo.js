@@ -13,7 +13,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs';
 import { useState } from 'react';
 import Modal from 'components/modalComponent/Modal';
 import { Slider } from 'components/viewComponents/Slider';
-import { useImdbRatingQuery } from 'services/imdbApi';
+import { useLazyImdbRatingQuery } from 'services/imdbApi';
 import { rating } from 'mappings/rateMovieInfoMap';
 import ClickOutside from 'components/wrappers/ClickAwaitWrapper';
 import { useMovieDetailQuery, useImageMovieDetailQuery } from 'services/api';
@@ -34,7 +34,7 @@ export function MovieInfo() {
   let movieState = useLocation()?.state;
   let moviesInWatchlist = getWatchlist();
   const t = useTranslation();
-  const { data: imdbRatings } = useImdbRatingQuery(movieData?.imdb_id);
+  const [trigger, { data: imdbRatings }] = useLazyImdbRatingQuery(movieData?.imdb_id);
 
   const [ratingState, setRatingState] = useState('');
   const movieId = parseInt(useParams().id);
@@ -48,6 +48,12 @@ export function MovieInfo() {
     const ratedMovie = data?.results.find(movies => movies.id === movieId);
     setRatingState(ratedMovie?.rating);
   }, [data]);
+
+  useEffect(() => {
+    if (movieData !== undefined) {
+      trigger(movieData?.imdb_id);
+    }
+  }, [movieData, trigger]);
 
   const findedMovie = findMovieInWatchlist(movieState.movie.id);
 

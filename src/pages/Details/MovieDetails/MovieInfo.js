@@ -51,7 +51,7 @@ export function MovieInfo() {
 
   useEffect(() => {
     if (movieData !== undefined) {
-      trigger(movieData?.imdb_id);
+      trigger(movieData.imdb_id);
     }
   }, [movieData, trigger]);
 

@@ -18,10 +18,14 @@ export function HomePage() {
   const [buttonValue, setButtonValue] = useState('discover');
   const [loader, setLoader] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [trigger] = useLazyMovieFetchQuery();
+  const [trigger, { fulfilledTimeStamp }] = useLazyMovieFetchQuery();
   const dispatch = useDispatch();
   const watchList = getWatchlist();
   const history = useHistory();
+
+  useEffect(() => {
+    setLoader(!!fulfilledTimeStamp);
+  }, [fulfilledTimeStamp]);
 
   useEffect(() => {
     (async () => {
@@ -35,10 +39,8 @@ export function HomePage() {
           })
         );
       }
-
       setMovies(cachingCategory[buttonValue].data);
     })();
-    setLoader(cachingCategory[buttonValue]?.loaded);
   }, [buttonValue, cachingCategory, trigger, dispatch]);
 
   return (
@@ -62,7 +64,7 @@ export function HomePage() {
           </div>
           <div className="Homepage-container__carousel-container">
             {' '}
-            <Carousel loading={loader} movies={movies} />{' '}
+            <Carousel loading={loader} movies={movies} />
           </div>
           {!!watchList.length ? (
             <>

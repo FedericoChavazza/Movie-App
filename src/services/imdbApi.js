@@ -14,4 +14,4 @@ export const ImdbApi = createApi({
   }),
 });
 
-export const { useImdbRatingQuery } = ImdbApi;
+export const { useLazyImdbRatingQuery } = ImdbApi;

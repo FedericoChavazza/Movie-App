@@ -2,7 +2,6 @@ import { Movie } from 'components/viewComponents/Movie';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import { useHorizontalScroll } from 'hooks/useSideScroll';
-import LOADER from 'imgs/loader.gif';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 
 export function Carousel({ movies, loading }) {
@@ -32,7 +31,12 @@ export function Carousel({ movies, loading }) {
           );
         })
       ) : (
-        <img className="Carousel__loader" src={LOADER} alt="loading..." />
+        <div className="Carousel__lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
       )}
     </div>
   );

@@ -29,13 +29,13 @@
 }
 
 .Homepage-container__carousel-container {
-  width: 100%;
-  @include display_flex(center, center);
+  max-width: 126rem;
+  @include display_flex(flex-start, center);
   margin-bottom: 12rem;
 }
 
 .Homepage-container__Watchlist-title {
-  @include display_flex(flex-start, flex-end);
+  @include display_flex(space-between, center);
   gap: 1.5rem;
   width: 100%;
   padding: 1rem;
@@ -49,14 +49,13 @@
     cursor: pointer;
     margin-bottom: 5px;
     font-size: 1.7rem;
+    align-self: flex-end;
+    margin-bottom: 5px;
   }
-}
-
-.Homepage-container__Watchlist-title h3 {
-  margin: 0;
-  color: #2f80ed;
-  cursor: pointer;
-  margin-bottom: 5px;
+  div {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
 .Homepage-container__button {

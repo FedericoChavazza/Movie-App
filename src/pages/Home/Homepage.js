@@ -11,6 +11,7 @@ import endpoints from 'constants/endpoints.js';
 import { getWatchlist } from 'utils/api';
 import { useHistory } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
+import { WatchlistCountSelect } from 'components/logicComponents/WatchlistCountSelect';
 
 export function HomePage() {
   const t = useTranslation();
@@ -22,6 +23,7 @@ export function HomePage() {
   const dispatch = useDispatch();
   const watchList = getWatchlist();
   const history = useHistory();
+  const [moviesToShow, setMoviesToShow] = useState('6');
 
   useEffect(() => {
     (async () => {
@@ -69,15 +71,19 @@ export function HomePage() {
               {' '}
               <div className="Homepage-container__Watchlist-title">
                 {' '}
-                <h1> {t('homepage.titles.watchlist')} </h1>
-                <h3 aria-hidden="true" onClick={() => history.push(routesPaths.watchlistInfo)}>
-                  {' '}
-                  {t('homepage.titles.list')}{' '}
-                </h3>
+                <div>
+                  <h1> {t('homepage.titles.watchlist')} </h1>
+                  <h3 aria-hidden="true" onClick={() => history.push(routesPaths.watchlistInfo)}>
+                    {t('homepage.titles.list')}{' '}
+                  </h3>
+                </div>
+                <div>
+                  <WatchlistCountSelect state={moviesToShow} setState={setMoviesToShow} />{' '}
+                </div>
               </div>{' '}
               <div className="Homepage-container__carousel-container">
                 {' '}
-                <Carousel movies={watchList} />
+                <Carousel loading={loader} movies={watchList} moviesToShow={moviesToShow} />
               </div>{' '}
             </>
           ) : null}

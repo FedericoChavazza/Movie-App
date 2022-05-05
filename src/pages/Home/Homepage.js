@@ -11,7 +11,7 @@ import endpoints from 'constants/endpoints.js';
 import { getWatchlist } from 'utils/api';
 import { useHistory } from 'react-router-dom';
 import routesPaths from 'routes/routesPaths';
-import { WatchlistCountArray } from 'components/logicComponents/WatchlistCountArray';
+import { WatchlistCountSelect } from 'components/logicComponents/WatchlistCountSelect';
 
 export function HomePage() {
   const t = useTranslation();
@@ -78,7 +78,7 @@ export function HomePage() {
                   </h3>
                 </div>
                 <div>
-                  <WatchlistCountArray state={moviesToShow} setState={setMoviesToShow} />{' '}
+                  <WatchlistCountSelect state={moviesToShow} setState={setMoviesToShow} />{' '}
                 </div>
               </div>{' '}
               <div className="Homepage-container__carousel-container">
